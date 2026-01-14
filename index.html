@@ -1,12 +1,477 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>My First GitHub Website</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERROR</title>
+<link rel="icon" type="image/x-icon" href="https://codehs.com/uploads/d26cbeda8aae56aacacf3e4250b8f0d0">
+
+
+<!-- Rules: -->
+<!-- Do not change anything without permission -->
+<!-- Do not steal or take any code with out permission -->
+<!-- You have to be in the "Treaties" -->
+<!-- You can not report any collaborators to the school or anyone -->
+<!-- You have to have Discord -->
+<!-- Colabs disabled -->
+
+
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            color: white;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+
+        /* Matrix background canvas */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: black;
+        }
+
+
+        /* Panic button styling */
+        #panicButton {
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+            z-index: 1000;
+            font-family: "Orbitron", sans-serif;
+        }
+
+
+        #panicButton:hover {
+            background-color: darkred;
+        }
+
+
+        /* Footer style */
+        footer {
+            color: gray;
+            font-size: 14px;
+            margin-top: 40px;
+            font-family: "Share Tech Mono", monospace;
+        }
+
+
+        table {
+            margin: 0 auto;
+        }
+
+
+        /* Glow effect for ERROR image */
+        img[src="https://codehs.com/uploads/60f7db2a7aeb92bb7972d410db1346ac"] {
+            border: 3px solid #00ff00;
+            border-radius: 12px;
+            box-shadow: 0 0 12px #00ff00, 0 0 25px #00ff00;
+            padding: 5px;
+            transition: 0.2s ease-in-out;
+        }
+
+
+        img[src="https://codehs.com/uploads/60f7db2a7aeb92bb7972d410db1346ac"]:hover {
+            box-shadow: 0 0 18px #00ff00, 0 0 35px #00ff00;
+            transform: scale(1.03);
+        }
+
+
+        /* FLICKER EFFECT — ERROR TITLE (WHITE) */
+        .glitch {
+            position: relative;
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            font-family: "Orbitron", sans-serif;
+            text-shadow: 0 0 8px white;
+            animation: flicker-title 3s infinite;
+        }
+
+
+        @keyframes flicker-title {
+            0% { opacity: 1; }
+            5% { opacity: 0.4; }
+            8% { opacity: 1; }
+            10% { opacity: 0.2; }
+            12% { opacity: 1; }
+            20% { opacity: 0.7; }
+            22% { opacity: 1; }
+            90% { opacity: 1; }
+            92% { opacity: 0.3; }
+            95% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+
+        /* FLICKER EFFECT — ERROR IMAGE */
+        .error-img {
+            animation: flicker-img 3.5s infinite;
+        }
+
+
+        @keyframes flicker-img {
+            0% { opacity: 1; }
+            6% { opacity: 0.3; }
+            8% { opacity: 1; }
+            10% { opacity: 0.5; }
+            11% { opacity: 1; }
+            50% { opacity: 1; }
+            52% { opacity: 0.4; }
+            55% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+
+
+        /* LINK STYLING — WHITE BY DEFAULT, STRONGER GREEN GLOW ON HOVER */
+        a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+
+        a:hover {
+            color: #00FF00;
+            text-shadow: 0 0 12px #00FF00, 0 0 24px #00FF00, 0 0 36px #00FF00;
+        }
+
+
+        /* HR Styling — light gray with subtle green glow */
+        hr {
+            border: 0;
+            height: 2px;
+            background-color: #00FF00;
+            margin: 20px 0;
+        }
+
+
+
+
+        /* ==================================================== */
+        /* ADDED: FUTURISTIC GREEN GLOW NOTIFICATION BANNER     */
+        /* ==================================================== */
+        #updateBanner {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00FF00;
+            padding: 15px 25px;
+            font-family: "Orbitron", sans-serif;
+            color: #00FF00;
+            font-size: 20px;
+            border-radius: 12px;
+            text-shadow: 0 0 8px #00FF00;
+            box-shadow: 0 0 12px #00FF00;
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+
+
+            opacity: 0;
+            animation: slideDownFade 0.8s forwards;
+        }
+
+
+        @keyframes slideDownFade {
+            from {
+                transform: translate(-50%, -20px);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+
+    </style>
 </head>
 <body>
-  <h1>It works 🎉</h1>
-  <p>If you see this, GitHub Pages is set up correctly.</p>
+
+
+<!-- MATRIX BACKGROUND -->
+<canvas id="matrix"></canvas>
+
+
+<!-- ORIGINAL CONTENT BELOW — UNCHANGED -->
+
+
+<h1 class="glitch" style="font-size: 75px;">ERROR</h1>
+<hr>
+
+
+<h2 style="color:white; font-family: 'Orbitron', sans-serif;">Welcome to ERROR</h2>
+
+
+<!-- ERROR IMAGE WITH FLICKER -->
+<img class="error-img" src="https://codehs.com/uploads/60f7db2a7aeb92bb7972d410db1346ac" width="250px">
+
+
+<hr>
+
+
+<p style="font-size: 17px;">About: ERROR was taken down, so we made this. Its kind of a downgrade, because we lost the original code, so we don't have all the things that we used to. We do not use/put up games or websites, made using google sites. These are all the games I have. Currently helping people code. Someone has leaked the unblocker to IT, and now, you can get sent to anix fro having it. Following this, we will no longer be giving out the unblocker over gmail, or any other school controlled communication account.</p>
+
+
+<a style="font-size: 18px;" href="https://forms.gle/Y9fxDATNQMtaFnPo7" target="_blank" rel="noopener noreferrer">{Report A Bug Or Problem}</a><br>
+<a style="font-size: 18px;" href="https://forms.gle/vykfPRkyBpuTXwsv9" target="_blank" rel="noopener noreferrer">{Ask A Question}</a><br>
+
+
+<a href="https://error-16691042.codehs.me/update.log.html" target="_blank" rel="noopener noreferrer">{Update Logs}</a><br>
+
+
+<h3 style="font-size: 18px;">Collabs:</h3>
+<p style="font-size: 16px;">Sinister Games<br>Silly's Playhouse<br></p>
+
+
+<h3 style="font-size: 18px;">Announcements:</h3>
+<p style="font-size: 16px;">Winter Update!</p>
+
+
+<h4 style="color:orange;">Available: 6:00pm - 8:00pm</h4>
+<h4 style="color:orange;">Website Version: 8.11.0</h4>
+
+
+<hr>
+
+
+<h2 style="color:white;">Other Sites</h2>
+<a href="https://hb-14650947.codehs.me/G1itch.445" target="_blank" rel="noopener noreferrer">G1itch</a><br>
+<a href="https://sinister-games-15399148.codehs.me/index.html" target="_blank" rel="noopener noreferrer">Sinister Games</a><br>
+<a href="https://astro-games-14353248.codehs.me/index.html" target="_blank" rel="noopener noreferrer">Astro-Games</a><br>
+<a href="https://x-games-14387080.codehs.me/" target="_blank" rel="noopener noreferrer">X-Games</a><br>
+
+
+<hr>
+
+
+<h2 style="color:white;">Games</h2>
+<a href="https://error-16691042.codehs.me/They.Are.Coming.html" target="_blank" rel="noopener noreferrer">They Are Coming</a><br>
+<a href="https://error-16691042.codehs.me/Minecraft.1.21.4.html" target="_blank" rel="noopener noreferrer">Minecraft 1.21.4</a><br>
+<a href="https://error-16691042.codehs.me/Basket.Random.html" target="_blank" rel="noopener noreferrer">Basket Random</a><br>
+<a href="https://error-16691042.codehs.me/Retro.Bowl.html" target="_blank" rel="noopener noreferrer">Retro Bowl</a><i><h style="color:white"> (Very Popular For Some Reason)</i><br>
+<a href="https://error-16691042.codehs.me/FNAF.html" target="_blank" rel="noopener noreferrer">FNAF</a><br>
+<a href="https://error-16691042.codehs.me/Rooftop.Snipers.html" target="_blank" rel="noopener noreferrer">Rooftop Snipers</a><br>
+<a href="https://error-16691042.codehs.me/Cookie.Clicker.html" target="_blank" rel="noopener noreferrer">Cookie Clicker</a><br>
+<a href="https://new-sandbox-program-11-14372996.codehs.me/index.html" target="_blank" rel="noopener noreferrer">Tiny Fishing</a><br>
+<a href="https://orb.farm/" target="_blank" rel="noopener noreferrer">Orb Farm</a><br>
+<a href="https://thecodepost.org/apps/trex/index.html" target="_blank" rel="noopener noreferrer">T-rex Game</a><br>
+<a href="https://www.engineering.com/games/" target="_blank" rel="noopener noreferrer">Engineering Games</a><br>
+<a href="https://quickdraw.withgoogle.com/" target="_blank" rel="noopener noreferrer">Quick Draw</a><br>
+<a href="https://playspent.org/html/" target="_blank" rel="noopener noreferrer">Spent</a><br>
+<a href="https://www.nytimes.com/puzzles/tiles" target="_blank" rel="noopener noreferrer">Puzzles</a><br>
+<a href="https://www.google.com/search?q=color+tiles" target="_blank" rel="noopener noreferrer">Color Tiles</a><br>
+<a href="https://www.google.com/search?q=tic+tac+go" target="_blank" rel="noopener noreferrer">Tic Tac Go</a><br>
+<a href="https://www.google.com/search?q=google+snake" target="_blank" rel="noopener noreferrer">Snake</a><br>
+<a href="https://www.google.com/search?q=google+baseball" target="_blank" rel="noopener noreferrer">Baseball</a><br>
+<a href="https://www.google.com/search?q=google+minesweeper" target="_blank" rel="noopener noreferrer">Minesweeper</a><br>
+<a href="https://www.google.com/search?q=google+solitaire" target="_blank" rel="noopener noreferrer">Solitaire</a><br>
+<a href="https://www.google.com/search?q=google+block+breaker" target="_blank" rel="noopener noreferrer">Block Breaker</a><br>
+<a href="https://www.google.com/search?q=celebrating+popcorn" target="_blank" rel="noopener noreferrer">Celebrating Popcorn</a><br>
+<a href="https://www.google.com/search?q=doodle+halloween" target="_blank" rel="noopener noreferrer">Doodle Halloween</a><br>
+<a href="https://www.google.com/search?q=champion+island" target="_blank" rel="noopener noreferrer">Champion Island</a><br>
+<a href="https://codehs.com/sandbox/id/unblocker-ybnyka/run" target="_blank" rel="noopener noreferrer">Totaly Won't Crash Your Chromebook</a><br>
+
+
+<hr>
+
+
+<h2 style="color:white;">Emulator (Credits to G1itch)</h2>
+<a href="https://emulator-file-8472703.codehs.me/index.html" target="_blank" rel="noopener noreferrer">Emulator</a><br>
+<a href="https://drive.google.com/drive/folders/11OcpyscVJE8P5VTFO37e1iOCX4nAelV-" target="_blank" rel="noopener noreferrer">Emulator ROMs</a><br>
+<a href="https://drive.google.com/drive/folders/1Kel_hgxk886WSDDtej-GYjD3a9xcP5qD?usp=drive_link" target="_blank" rel="noopener noreferrer">Salmon Games</a><br>
+
+
+<hr>
+
+
+<table border="2" style="font-size:25px; margin: 0 auto;">
+<tr style="color:white; font-size:25px;">
+<th>Discord</th>
+<th>Email</th>
+</tr>
+<tr style="color:white;">
+<td>error.administrator</td>
+<td>error1creator@gmail.com</td>
+</tr>
+</table>
+
+
+<!-- MATRIX SCRIPT -->
+<script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+
+const letters = '10';
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+
+function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    ctx.fillStyle = '#00FF00';
+    ctx.font = fontSize + 'px monospace';
+
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+
+
+setInterval(draw, 30);
+
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+
+
+<!-- PANIC BUTTON -->
+<button id="panicButton" onclick="window.location.href='https://schoology.kleinisd.net/grades/grades'">Panic Button</button>
+
+
+<!-- FOOTER -->
+<footer>
+ERROR Corporation|The Administrator
+</footer>
+
+
+<!-- NOTIFICATIONS SCRIPT -->
+<script>
+const CURRENT_VERSION = "8.11.0";
+
+
+/* ========================================================== */
+/*          HACKER THEME — ADDED WITHOUT REMOVING             */
+/* ========================================================== */
+function hackerFormat(title, body) {
+    const phrases = [
+        "ACCESS GRANTED",
+        "ACCESS APPROVED",
+        "DECRYPT SUCCESSFUL",
+        "FIREWALL BREACHED",
+        "CONNECTION STABLE",
+        "USER AUTHENTICATED"
+    ];
+
+
+    const random = phrases[Math.floor(Math.random() * phrases.length)];
+
+
+    return {
+        title: ` ERROR Alert: ${title.toUpperCase()}`,
+        body: ` ${body}\n STATUS: ${random}\n ORIGIN: ERROR\n By: The Administrator`,
+        icon: "https://codehs.com/uploads/60f7db2a7aeb92bb7972d410db1346ac"
+    };
+}
+/* ========================================================== */
+
+
+function showNotification(title, body, icon) {
+    if (Notification.permission === "granted") {
+
+
+        const fx = hackerFormat(title, body);
+
+
+        new Notification(fx.title, {
+            body: fx.body,
+            icon: fx.icon
+        });
+    }
+}
+
+
+function showBanner(message) {
+    const banner = document.getElementById("updateBanner");
+    banner.textContent = message;
+    banner.style.display = "block";
+    setTimeout(() => {
+        banner.style.display = "none";
+    }, 8000); // 8 seconds visible
+}
+
+
+if ("Notification" in window) {
+    Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+            showNotification("Welcome to ERROR!", "");
+
+
+            const lastVersion = localStorage.getItem("lastVersion");
+            if (lastVersion !== CURRENT_VERSION) {
+                showBanner(`Site updated to version ${CURRENT_VERSION}!`);
+                localStorage.setItem("lastVersion", CURRENT_VERSION);
+            }
+        }
+    });
+}
+
+
+// Panic Button notification
+document.getElementById("panicButton").addEventListener("click", () => {
+    showNotification("Panic Button Pressed!", "Teachers won't see you...");
+});
+</script>
+
+
+<!-- 🔥 SECRET ACCESS CODE (↑ ↓ ← ←) -->
+<script>
+let secret = [];
+let secretCode = "38403840"; 
+// ↑ ↓ ← ←
+
+
+document.addEventListener("keydown", (e) => {
+  secret.push(e.keyCode);
+
+
+  if (secret.length > 20) {
+    secret.shift();
+  }
+
+
+  if (secret.join("").includes(secretCode)) {
+    window.location.href = "https://error-16691042.codehs.me/ERROR.Corporation.Personel.Only.html";
+  }
+});
+</script>
+
+
 </body>
 </html>
