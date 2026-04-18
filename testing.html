@@ -8,8 +8,8 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
-<!-- Font + Styles -->
 <style>
+/* Basic styling */
 body {
   margin: 0;
   font-family: "Arial Rounded MT Bold", Arial, sans-serif;
@@ -19,6 +19,7 @@ body {
   background: #000;
 }
 
+/* Matrix-like background */
 canvas {
   position: fixed;
   top: 0;
@@ -34,7 +35,7 @@ body::before {
   z-index: 1;
 }
 
-/* NAVBAR */
+/* Navbar */
 .navbar {
   position: fixed;
   top: 20px;
@@ -49,7 +50,6 @@ body::before {
   gap: 20px;
   z-index: 10;
 }
-
 .navbar a {
   text-decoration: none;
   color: white;
@@ -57,17 +57,20 @@ body::before {
   opacity: 0.7;
   transition: 0.3s;
 }
-
 .navbar a:hover { opacity: 1; }
 
+/* Header/logo */
 header {
   text-align: center;
-  margin-top: 120px;
-  font-size: 3rem;
+  margin-top: 100px;
   z-index: 2;
   position: relative;
 }
-
+header img {
+  width: 180px;
+  height: 180px;
+  margin-bottom: 20px;
+}
 .subtitle {
   text-align: center;
   opacity: 0.6;
@@ -76,7 +79,7 @@ header {
   position: relative;
 }
 
-/* GLASS PANELS */
+/* Glass panels */
 .panel {
   background: rgba(255,255,255,0.05);
   backdrop-filter: blur(25px);
@@ -90,12 +93,10 @@ header {
   position: relative;
   transition: 0.3s;
 }
-
 .panel:hover {
   transform: translateY(-6px);
   box-shadow: 0 10px 40px rgba(255,255,255,0.1);
 }
-
 button {
   background: rgba(255,255,255,0.1);
   border: none;
@@ -106,9 +107,9 @@ button {
   cursor: pointer;
   transition: 0.3s;
 }
-
 button:hover { background: rgba(255,255,255,0.2); }
 
+/* Projects grid */
 .projects {
   display: flex;
   flex-wrap: wrap;
@@ -119,6 +120,7 @@ button:hover { background: rgba(255,255,255,0.2); }
   position: relative;
 }
 
+/* Footer */
 footer {
   text-align: center;
   margin: 60px 0 20px;
@@ -128,7 +130,7 @@ footer {
   position: relative;
 }
 
-/* CURSOR TRAIL */
+/* Cursor trail */
 .trail {
   position: fixed;
   width: 8px;
@@ -152,17 +154,19 @@ footer {
   <a href="#">Contact</a>
 </div>
 
-<header>ERROR Corporation</header>
+<header>
+  <img src="assets/ERROR Logo 1.png" alt="ERROR Corporation Logo">
+</header>
 <div class="subtitle">Connecting All Projects & Systems</div>
 
-<!-- Main Panel -->
+<!-- Main Welcome Panel -->
 <div class="panel">
   <p><strong>Welcome to ERROR Corporation</strong></p>
   <p>Your hub for all projects, experiments, and systems.</p>
   <button onclick="alert('Explore our projects!')">Explore Projects</button>
 </div>
 
-<!-- Projects -->
+<!-- Projects Section -->
 <div id="projects" class="projects">
   <div class="panel">
     <p>ERROR MC</p>
