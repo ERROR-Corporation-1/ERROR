@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERROR Corporation | Systems Hub</title>
+
+<!-- Font -->
+<style>
+body {
+  margin: 0;
+  font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+  cursor: none;
+  background: #000;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0,0,0,0.9));
+  z-index: 1;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 30px;
+  padding: 10px 25px;
+  display: flex;
+  gap: 20px;
+  z-index: 10;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.navbar a:hover { opacity: 1; }
+
+header {
+  text-align: center;
+  margin-top: 120px;
+  font-size: 3rem;
+  z-index: 2;
+  position: relative;
+}
+
+.subtitle {
+  text-align: center;
+  opacity: 0.6;
+  margin-bottom: 40px;
+  z-index: 2;
+  position: relative;
+}
+
+/* GLASS PANELS */
+.panel {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(25px);
+  border-radius: 25px;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 30px;
+  width: 320px;
+  margin: 20px auto;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  transition: 0.3s;
+}
+
+.panel:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 40px rgba(255,255,255,0.1);
+}
+
+button {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 15px;
+  color: white;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover { background: rgba(255,255,255,0.2); }
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  z-index: 2;
+  position: relative;
+}
+
+footer {
+  text-align: center;
+  margin: 60px 0 20px;
+  opacity: 0.5;
+  font-size: 0.8rem;
+  z-index: 2;
+  position: relative;
+}
+
+/* CURSOR TRAIL */
+.trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: white;
+  opacity: 0.7;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 9999;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="navbar">
+  <a href="#">Home</a>
+  <a href="#projects">Projects</a>
+  <a href="#">Contact</a>
+</div>
+
+<header>ERROR Corporation</header>
+<div class="subtitle">SYSTEM CORE // ONLINE</div>
+
+<!-- Floating Main Panel -->
+<div class="panel">
+  <p><strong>Core System</strong></p>
+  <p>Status: <span id="status">Online ✅</span></p>
+  <button onclick="alert('IP copied!')">Copy System IP</button>
+</div>
+
+<!-- Projects -->
+<div id="projects" class="projects">
+  <div class="panel">
+    <p>Project Alpha</p>
+    <p>Node Online</p>
+  </div>
+  <div class="panel">
+    <p>Project Beta</p>
+    <p>Node Offline</p>
+  </div>
+  <div class="panel">
+    <p>Experimental Labs</p>
+    <p>Active</p>
+  </div>
+</div>
+
+<footer>© 2026 ERROR Corporation</footer>
+
+<script>
+// MATRIX-LIKE BACKGROUND
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const chars = ["●","◦","▪","▫","▸","▹"];
+const fontSize = 14;
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(1);
+
+function drawMatrix() {
+  ctx.fillStyle = "rgba(0,0,0,0.08)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255,255,255,0.7)";
+  ctx.font = fontSize + "px monospace";
+
+  for(let i=0; i<drops.length; i++){
+    const text = chars[Math.floor(Math.random()*chars.length)];
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+    if(drops[i]*fontSize>canvas.height && Math.random()>0.975) drops[i]=0;
+    drops[i]++;
+  }
+}
+setInterval(drawMatrix, 35);
+
+// CURSOR TRAIL
+const trail = [];
+document.addEventListener("mousemove", e=>{
+  const t = document.createElement("div");
+  t.className="trail";
+  t.style.left=e.clientX+"px";
+  t.style.top=e.clientY+"px";
+  document.body.appendChild(t);
+  trail.push({el:t, life:1});
+});
+
+function animateTrail(){
+  trail.forEach((t,i)=>{
+    t.life-=0.03;
+    t.el.style.opacity=t.life;
+    if(t.life<=0){ t.el.remove(); trail.splice(i,1); }
+  });
+  requestAnimationFrame(animateTrail);
+}
+animateTrail();
+</script>
+
+</body>
+</html>
