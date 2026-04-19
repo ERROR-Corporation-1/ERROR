@@ -9,17 +9,20 @@
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
 <style>
-/* Basic styling */
+/* GLOBAL FONT */
+body, header, .navbar a, .panel, .subtitle, footer, button {
+  font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: "Arial Rounded MT Bold", Arial, sans-serif;
   color: #ffffff;
   overflow-x: hidden;
   cursor: none;
   background: #000;
 }
 
-/* Matrix-like background */
+/* BACKGROUND CANVAS */
 canvas {
   position: fixed;
   top: 0;
@@ -35,7 +38,7 @@ body::before {
   z-index: 1;
 }
 
-/* Navbar */
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 20px;
@@ -50,6 +53,7 @@ body::before {
   gap: 20px;
   z-index: 10;
 }
+
 .navbar a {
   text-decoration: none;
   color: white;
@@ -57,29 +61,38 @@ body::before {
   opacity: 0.7;
   transition: 0.3s;
 }
-.navbar a:hover { opacity: 1; }
 
-/* Header/logo */
+.navbar a:hover {
+  opacity: 1;
+}
+
+/* HEADER */
 header {
   text-align: center;
-  margin-top: 100px;
-  z-index: 2;
+  margin-top: 110px;
   position: relative;
+  z-index: 2;
 }
+
+/* LOGO */
 header img {
-  width: 180px;
   height: 180px;
-  margin-bottom: 20px;
+  width: auto;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(255,255,255,0.18);
 }
+
+/* SUBTITLE */
 .subtitle {
   text-align: center;
   opacity: 0.6;
   margin-bottom: 40px;
-  z-index: 2;
   position: relative;
+  z-index: 2;
 }
 
-/* Glass panels */
+/* GLASS PANELS (BUBBLES) */
 .panel {
   background: rgba(255,255,255,0.05);
   backdrop-filter: blur(25px);
@@ -89,14 +102,21 @@ header img {
   width: 320px;
   margin: 20px auto;
   text-align: center;
-  z-index: 2;
   position: relative;
+  z-index: 2;
+
+  /* SOFT WHITE GLOW */
+  box-shadow: 0 0 20px rgba(255,255,255,0.12);
+
   transition: 0.3s;
 }
+
 .panel:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 40px rgba(255,255,255,0.1);
+  box-shadow: 0 0 30px rgba(255,255,255,0.18);
 }
+
+/* BUTTONS */
 button {
   background: rgba(255,255,255,0.1);
   border: none;
@@ -107,30 +127,33 @@ button {
   cursor: pointer;
   transition: 0.3s;
 }
-button:hover { background: rgba(255,255,255,0.2); }
 
-/* Projects grid */
+button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* PROJECTS */
 .projects {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   margin-top: 30px;
-  z-index: 2;
   position: relative;
+  z-index: 2;
 }
 
-/* Footer */
+/* FOOTER */
 footer {
   text-align: center;
   margin: 60px 0 20px;
   opacity: 0.5;
   font-size: 0.8rem;
-  z-index: 2;
   position: relative;
+  z-index: 2;
 }
 
-/* Cursor trail */
+/* CURSOR TRAIL */
 .trail {
   position: fixed;
   width: 8px;
@@ -155,82 +178,101 @@ footer {
 </div>
 
 <header>
-  <img src="assets/ERROR Logo 1.png" alt="ERROR Corporation Logo">
+  <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
 </header>
-<div class="subtitle">Connecting All Projects & Systems</div>
 
-<!-- Main Welcome Panel -->
+<div class="subtitle">Connecting All Systems & Projects</div>
+
+<!-- MAIN PANEL -->
 <div class="panel">
   <p><strong>Welcome to ERROR Corporation</strong></p>
-  <p>Your hub for all projects, experiments, and systems.</p>
-  <button onclick="alert('Explore our projects!')">Explore Projects</button>
+  <p>Your central hub for all projects, systems, and experiments.</p>
+  <button onclick="alert('Explore Projects')">Explore Projects</button>
 </div>
 
-<!-- Projects Section -->
+<!-- PROJECTS -->
 <div id="projects" class="projects">
+
   <div class="panel">
     <p>ERROR MC</p>
-    <p>Active Node</p>
+    <p>Active Project</p>
   </div>
+
   <div class="panel">
     <p>Legacy Systems</p>
     <p>Offline</p>
   </div>
+
   <div class="panel">
     <p>Experimental Labs</p>
     <p>Active</p>
   </div>
+
 </div>
 
 <footer>© 2026 ERROR Corporation</footer>
 
 <script>
-// MATRIX-LIKE BACKGROUND
+// BACKGROUND EFFECT (calm abstract matrix style)
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const chars = ["●","◦","▪","▫","▸","▹"];
-const fontSize = 14;
+const chars = ["●","◦","▪","▫","·"];
+const fontSize = 16;
 const columns = Math.floor(canvas.width / fontSize);
 const drops = Array(columns).fill(1);
 
-function drawMatrix() {
+function draw() {
   ctx.fillStyle = "rgba(0,0,0,0.08)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(255,255,255,0.7)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
   ctx.font = fontSize + "px monospace";
 
-  for(let i=0; i<drops.length; i++){
+  for(let i=0;i<drops.length;i++){
     const text = chars[Math.floor(Math.random()*chars.length)];
     ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-    if(drops[i]*fontSize>canvas.height && Math.random()>0.975) drops[i]=0;
+
+    if(drops[i]*fontSize > canvas.height && Math.random() > 0.975){
+      drops[i] = 0;
+    }
+
     drops[i]++;
   }
 }
-setInterval(drawMatrix, 35);
+
+setInterval(draw, 40);
 
 // CURSOR TRAIL
 const trail = [];
+
 document.addEventListener("mousemove", e=>{
   const t = document.createElement("div");
-  t.className="trail";
-  t.style.left=e.clientX+"px";
-  t.style.top=e.clientY+"px";
+  t.className = "trail";
+  t.style.left = e.clientX + "px";
+  t.style.top = e.clientY + "px";
   document.body.appendChild(t);
+
   trail.push({el:t, life:1});
 });
 
-function animateTrail(){
+function animate(){
   trail.forEach((t,i)=>{
-    t.life-=0.03;
-    t.el.style.opacity=t.life;
-    if(t.life<=0){ t.el.remove(); trail.splice(i,1); }
+    t.life -= 0.03;
+    t.el.style.opacity = t.life;
+
+    if(t.life <= 0){
+      t.el.remove();
+      trail.splice(i,1);
+    }
   });
-  requestAnimationFrame(animateTrail);
+
+  requestAnimationFrame(animate);
 }
-animateTrail();
+animate();
 </script>
 
 </body>
