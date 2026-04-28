@@ -1,51 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ERROR Corporation</title>
+
+<link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+html{scroll-behavior:smooth;}
+
 :root{
-  --glow: rgba(255,255,255,.25);
-  --glow-strong: rgba(255,255,255,.45);
+  --glow: rgba(255,255,255,.28);
+  --glow-strong: rgba(255,255,255,.55);
 }
 
-/* GLOBAL TEXT GLOW */
-h1,h2,h3,p,a{
-  text-shadow:0 0 12px rgba(255,255,255,.08);
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
 }
 
-/* HERO LOGO */
-.hero img{
-  height:180px;
-  width:auto;
-
-  opacity:0;
-  transform:scale(.75);
-  animation:logoIn 1.2s ease forwards;
-
-  filter:
-    drop-shadow(0 0 25px var(--glow))
-    drop-shadow(0 0 60px rgba(255,255,255,.08));
+/* LOADER */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+  transition:opacity .8s ease;
 }
 
-/* BUTTON GLOW */
-button{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.15);
+#loader img{
+  width:120px;
+  animation:pop 1s ease forwards;
+  filter:drop-shadow(0 0 25px rgba(255,255,255,.4));
+}
 
-  box-shadow:
-    0 0 12px rgba(255,255,255,.08),
-    inset 0 0 10px rgba(255,255,255,.04);
+@keyframes pop{
+  from{transform:scale(.6);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
 
+/* BACKGROUND */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  animation:hue 30s infinite linear;
+}
+
+@keyframes hue{
+  0%{filter:hue-rotate(0deg);}
+  50%{filter:hue-rotate(20deg);}
+  100%{filter:hue-rotate(0deg);}
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top, rgba(255,255,255,.07), transparent 55%),linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.97));
+  z-index:1;
+  pointer-events:none;
+}
+
+/* TOPBAR */
+.topbar{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:50;
+
+  padding:14px 28px;
+  border-radius:999px;
+
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.14);
+
+  box-shadow:0 0 28px rgba(255,255,255,.2);
+
+  display:flex;
+  gap:18px;
+}
+
+.topbar a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.75;
   transition:.25s;
 }
 
-button:hover{
-  box-shadow:
-    0 0 20px var(--glow),
-    0 0 60px rgba(255,255,255,.08);
-
-  transform:translateY(-3px);
+.topbar a:hover{
+  opacity:1;
+  text-shadow:0 0 15px #fff;
 }
 
-/* CARDS (MAIN GLOW STYLE) */
+/* MAIN */
+main{
+  position:relative;
+  z-index:2;
+  padding:120px 16px 60px;
+  text-align:center;
+}
+
+/* HERO */
+.hero img{
+  height:180px;
+  width:auto;
+  opacity:0;
+  transform:scale(.75);
+  animation:logoIn 1.4s ease forwards;
+  filter:drop-shadow(0 0 30px var(--glow));
+}
+
+@keyframes logoIn{
+  to{opacity:1; transform:scale(1);}
+}
+
+.hero h1{
+  font-size:3rem;
+  margin-top:18px;
+  text-shadow:0 0 18px rgba(255,255,255,.1);
+}
+
+.hero p{opacity:.75;margin-top:10px;}
+
+/* SECTIONS */
+.section{margin-top:90px;max-width:1000px;margin:auto;}
+.section-title{text-align:center;font-size:2rem;margin-bottom:25px;}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+  margin-top:30px;
+}
+
+/* CARDS (MORE RADIUS + FUTURISTIC GLOW) */
 .card, .shop-card{
+  padding:28px;
+  border-radius:28px;
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.14);
+
+  backdrop-filter:blur(22px);
 
   box-shadow:
     0 0 18px rgba(255,255,255,.08),
@@ -55,19 +167,132 @@ button:hover{
 }
 
 .card:hover, .shop-card:hover{
+  transform:translateY(-6px);
   box-shadow:
-    0 0 28px var(--glow),
-    0 0 70px rgba(255,255,255,.06);
+    0 0 35px var(--glow),
+    0 0 80px rgba(255,255,255,.06);
 }
 
-/* TOP BAR GLOW */
-.topbar{
-  box-shadow:
-    0 0 25px rgba(255,255,255,.18),
-    inset 0 0 10px rgba(255,255,255,.05);
+/* BUTTONS */
+button{
+  margin-top:12px;
+  padding:12px 18px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  cursor:pointer;
+  transition:.25s;
+  box-shadow:0 0 12px rgba(255,255,255,.08);
 }
 
-/* PARTICLES ALSO GLOW */
-canvas{
-  filter:drop-shadow(0 0 20px rgba(255,255,255,.05));
+button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 25px var(--glow-strong);
 }
+
+/* FOOTER */
+footer{
+  margin-top:80px;
+  opacity:.4;
+  font-size:.8rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img src="assets/ERROR Logo 1.png">
+</div>
+
+<canvas id="bg"></canvas>
+
+<div class="topbar">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#shop">Shop</a>
+</div>
+
+<main>
+
+<section class="hero" id="home">
+  <img src="assets/ERROR Logo 1.png">
+  <h1>ERROR Corporation</h1>
+  <p>Future-built creative identity system.</p>
+</section>
+
+<section class="section" id="about">
+  <h2 class="section-title">About</h2>
+  <p style="opacity:.75;max-width:700px;margin:auto;line-height:1.6">
+    ERROR Corporation is a futuristic creative brand focused on design, ideas, and digital expression.
+  </p>
+
+  <div class="grid">
+    <div class="card">Minimal Design Language</div>
+    <div class="card">Futuristic Identity</div>
+    <div class="card">Experimental Visuals</div>
+  </div>
+</section>
+
+<section class="section" id="shop">
+  <h2 class="section-title">Shop</h2>
+
+  <div class="grid">
+    <div class="shop-card">
+      <h3>Official Hoodie</h3>
+      <p>Premium ERROR design.</p>
+      <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie')">View</button>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 ERROR Corporation</footer>
+
+</main>
+
+<script>
+
+/* LOADER */
+window.addEventListener("load",()=>{
+  const l=document.getElementById("loader");
+  setTimeout(()=>{
+    l.style.opacity="0";
+    setTimeout(()=>l.remove(),800);
+  },1200);
+});
+
+/* PARTICLES */
+const c=document.getElementById("bg");
+const x=c.getContext("2d");
+
+function r(){c.width=innerWidth;c.height=innerHeight;}
+r();addEventListener("resize",r);
+
+const p=[];
+for(let i=0;i<100;i++)p.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,dx:(Math.random()-.5)*0.35,dy:(Math.random()-.5)*0.35,r:Math.random()*2});
+
+function d(){
+  x.fillStyle="rgba(0,0,0,.25)";
+  x.fillRect(0,0,c.width,c.height);
+
+  x.fillStyle="rgba(255,255,255,.35)";
+
+  p.forEach(o=>{
+    o.x+=o.dx;o.y+=o.dy;
+    if(o.x<0||o.x>innerWidth)o.dx*=-1;
+    if(o.y<0||o.y>innerHeight)o.dy*=-1;
+
+    x.beginPath();x.arc(o.x,o.y,o.r,0,Math.PI*2);x.fill();
+  });
+
+  requestAnimationFrame(d);
+}
+d();
+
+</script>
+
+</body>
+</html>
