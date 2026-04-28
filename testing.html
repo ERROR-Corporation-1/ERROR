@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ERROR Corporation</title>
+<meta name="description" content="ERROR Corporation official website — projects, shop, and updates.">
+<meta name="theme-color" content="#000000">
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
@@ -23,7 +26,6 @@ body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
-  cursor:none;
 }
 
 /* BACKGROUND */
@@ -41,6 +43,7 @@ body::before{
   radial-gradient(circle at top, rgba(255,255,255,.05), transparent 45%),
   linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
   z-index:1;
+  pointer-events:none;
 }
 
 /* TOP BAR */
@@ -58,9 +61,7 @@ body::before{
   backdrop-filter:blur(22px);
   border:1px solid rgba(255,255,255,.14);
 
-  box-shadow:
-  0 0 20px rgba(255,255,255,.08),
-  inset 0 0 10px rgba(255,255,255,.03);
+  box-shadow:0 0 20px rgba(255,255,255,.08);
 
   display:flex;
   gap:18px;
@@ -71,13 +72,18 @@ body::before{
   color:#fff;
   text-decoration:none;
   font-size:.95rem;
-  opacity:.78;
+  opacity:.7;
   transition:.25s;
+  position:relative;
 }
 
 .topbar a:hover{
   opacity:1;
-  text-shadow:0 0 12px rgba(255,255,255,.45);
+}
+
+.topbar a.active{
+  opacity:1;
+  text-shadow:0 0 12px rgba(255,255,255,.4);
 }
 
 /* MAIN */
@@ -98,9 +104,7 @@ main{
   height:180px;
   width:auto;
   border-radius:50%;
-  box-shadow:
-  0 0 28px rgba(255,255,255,.14),
-  0 0 70px rgba(255,255,255,.05);
+  box-shadow:0 0 50px rgba(255,255,255,.1);
 }
 
 .hero h1{
@@ -110,8 +114,7 @@ main{
 
 .hero p{
   margin-top:12px;
-  opacity:.7;
-  font-size:1rem;
+  opacity:.75;
 }
 
 /* BUTTONS */
@@ -127,26 +130,23 @@ button{
   border:none;
   color:white;
   padding:12px 18px;
-  border-radius:18px;
+  border-radius:16px;
   cursor:pointer;
-  transition:.25s;
+  transition:.2s;
 
   background:rgba(255,255,255,.08);
   backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.12);
-
-  box-shadow:0 0 16px rgba(255,255,255,.06);
 }
 
 button:hover{
   transform:translateY(-2px);
   background:rgba(255,255,255,.14);
-  box-shadow:0 0 24px rgba(255,255,255,.12);
 }
 
 /* SECTIONS */
 .section{
-  margin-top:70px;
+  margin-top:80px;
 }
 
 .section-title{
@@ -167,62 +167,49 @@ button:hover{
 /* CARD */
 .card{
   padding:28px;
-  border-radius:28px;
-
-  background:rgba(255,255,255,.055);
-  backdrop-filter:blur(25px);
-  border:1px solid rgba(255,255,255,.13);
-
-  box-shadow:
-  0 0 24px rgba(255,255,255,.08),
-  inset 0 0 14px rgba(255,255,255,.02);
-
-  transition:.28s;
+  border-radius:24px;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.12);
+  transition:.25s;
 }
 
 .card:hover{
   transform:translateY(-6px);
-  box-shadow:
-  0 0 34px rgba(255,255,255,.13),
-  inset 0 0 14px rgba(255,255,255,.03);
-}
-
-.card h3{
-  margin-bottom:10px;
+  background:rgba(255,255,255,.07);
 }
 
 .card p{
-  opacity:.72;
-  line-height:1.45;
+  opacity:.75;
+  line-height:1.5;
 }
 
 /* FOOTER */
 footer{
   margin-top:70px;
   text-align:center;
-  opacity:.45;
-  font-size:.82rem;
+  opacity:.4;
+  font-size:.8rem;
 }
 
 /* CURSOR TRAIL */
 .trail{
   position:fixed;
-  width:8px;
-  height:8px;
+  width:6px;
+  height:6px;
   background:#fff;
-  border-radius:4px;
+  border-radius:50%;
   pointer-events:none;
   z-index:9999;
-  box-shadow:0 0 12px rgba(255,255,255,.65);
+  opacity:.8;
 }
 
 @media(max-width:700px){
   .hero h1{font-size:2.2rem;}
   .topbar{
-    gap:10px;
-    padding:10px 16px;
     flex-wrap:wrap;
     justify-content:center;
+    gap:10px;
   }
 }
 </style>
@@ -232,25 +219,20 @@ footer{
 
 <canvas id="bg"></canvas>
 
-<!-- TOP BAR -->
 <div class="topbar">
-  <a href="#home">Home</a>
-  <a href="#projects">Projects</a>
-  <a href="#shop">Shop</a>
+  <a href="#home" class="nav">Home</a>
+  <a href="#projects" class="nav">Projects</a>
+  <a href="#shop" class="nav">Shop</a>
 </div>
 
 <main>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
 
   <h1>ERROR Corporation</h1>
 
-  <p>
-    Welcome to our official home page. Explore projects, discover merch,
-    and see what’s new.
-  </p>
+  <p>Explore projects, discover merch, and see what’s new.</p>
 
   <div class="btn-row">
     <button onclick="goTo('projects')">View Projects</button>
@@ -258,7 +240,6 @@ footer{
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section class="section" id="projects">
   <div class="section-title">Projects</div>
 
@@ -266,29 +247,23 @@ footer{
 
     <div class="card">
       <h3>ERROR MC</h3>
-      <p>
-        Our Minecraft community project with fun gameplay and updates.
-      </p>
+      <p>Minecraft community project with updates and gameplay.</p>
       <div class="btn-row">
-        <button onclick="alert('Project page coming soon')">Open</button>
+        <button onclick="alert('Coming soon')">Open</button>
       </div>
     </div>
 
     <div class="card">
       <h3>Main Website</h3>
-      <p>
-        The central home for everything connected to ERROR Corporation.
-      </p>
+      <p>The central hub for everything ERROR Corporation.</p>
       <div class="btn-row">
-        <button onclick="alert('You are already here')">Open</button>
+        <button onclick="alert('You are here')">Open</button>
       </div>
     </div>
 
     <div class="card">
       <h3>Coming Soon</h3>
-      <p>
-        More creative projects are on the way.
-      </p>
+      <p>New projects are in development.</p>
       <div class="btn-row">
         <button onclick="alert('Stay tuned')">Preview</button>
       </div>
@@ -297,7 +272,6 @@ footer{
   </div>
 </section>
 
-<!-- SHOP -->
 <section class="section" id="shop">
   <div class="section-title">Shop</div>
 
@@ -305,22 +279,18 @@ footer{
 
     <div class="card">
       <h3>Official Hoodie</h3>
-      <p>
-        Comfortable, stylish, and official ERROR Corporation merch.
-      </p>
+      <p>Premium ERROR Corporation merch.</p>
 
       <div class="btn-row">
-        <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop')">
+        <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share')">
           View Hoodie
         </button>
       </div>
     </div>
 
     <div class="card">
-      <h3>More Merch Soon</h3>
-      <p>
-        New products and ideas are planned for the future.
-      </p>
+      <h3>More Coming</h3>
+      <p>New merch drops planned soon.</p>
     </div>
 
   </div>
@@ -334,21 +304,45 @@ footer{
 
 <script>
 
-/* CLICK SOUND */
+/* CLICK SOUND (optimized) */
+const clickAudio = new Audio("data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA");
+clickAudio.volume = 0.15;
+
 function clickSound(){
-  const audio = new Audio("data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA");
-  audio.volume = 0.18;
-  audio.play();
+  clickAudio.currentTime = 0;
+  clickAudio.play();
 }
 
 document.querySelectorAll("button,a").forEach(el=>{
   el.addEventListener("click", clickSound);
 });
 
-/* NAV */
+/* NAV SCROLL */
 function goTo(id){
   document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
+
+/* ACTIVE NAV */
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav");
+
+window.addEventListener("scroll",()=>{
+  let current = "";
+
+  sections.forEach(sec=>{
+    const top = sec.offsetTop;
+    if(pageYOffset >= top - 200){
+      current = sec.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link=>{
+    link.classList.remove("active");
+    if(link.getAttribute("href") === "#"+current){
+      link.classList.add("active");
+    }
+  });
+});
 
 /* BACKGROUND */
 const canvas=document.getElementById("bg");
@@ -362,15 +356,21 @@ resize();
 addEventListener("resize",resize);
 
 const chars=["●","◦","▪","▫","·"];
-const size=16;
-let cols=Math.floor(innerWidth/size);
-let drops=Array(cols).fill(1);
+const size=18;
+let drops=[];
+
+function initDrops(){
+  const cols=Math.floor(innerWidth/size);
+  drops=Array(cols).fill(1);
+}
+initDrops();
+window.addEventListener("resize", initDrops);
 
 function draw(){
   ctx.fillStyle="rgba(0,0,0,.08)";
   ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  ctx.fillStyle="rgba(255,255,255,.45)";
+  ctx.fillStyle="rgba(255,255,255,.35)";
   ctx.font=size+"px monospace";
 
   for(let i=0;i<drops.length;i++){
@@ -383,10 +383,10 @@ function draw(){
     drops[i]++;
   }
 }
-setInterval(draw,40);
+setInterval(draw,45);
 
-/* CURSOR TRAIL */
-const trail=[];
+/* CURSOR TRAIL (lighter) */
+let trail=[];
 
 document.addEventListener("mousemove",e=>{
   const t=document.createElement("div");
@@ -400,9 +400,8 @@ document.addEventListener("mousemove",e=>{
 
 function animate(){
   trail.forEach((t,i)=>{
-    t.life-=0.03;
+    t.life-=0.04;
     t.el.style.opacity=t.life;
-    t.el.style.transform=`scale(${t.life})`;
 
     if(t.life<=0){
       t.el.remove();
