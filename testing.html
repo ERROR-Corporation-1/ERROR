@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ERROR Corporation</title>
-<meta name="description" content="ERROR Corporation official website — projects, shop, and updates.">
-<meta name="theme-color" content="#000000">
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
@@ -40,8 +38,8 @@ body::before{
   position:fixed;
   inset:0;
   background:
-  radial-gradient(circle at top, rgba(255,255,255,.05), transparent 45%),
-  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
+  radial-gradient(circle at top, rgba(255,255,255,.06), transparent 45%),
+  linear-gradient(to bottom, rgba(255,255,255,.04), rgba(0,0,0,.96));
   z-index:1;
   pointer-events:none;
 }
@@ -61,7 +59,9 @@ body::before{
   backdrop-filter:blur(22px);
   border:1px solid rgba(255,255,255,.14);
 
-  box-shadow:0 0 20px rgba(255,255,255,.08);
+  box-shadow:
+  0 0 20px rgba(255,255,255,.12),
+  inset 0 0 10px rgba(255,255,255,.05);
 
   display:flex;
   gap:18px;
@@ -72,18 +72,13 @@ body::before{
   color:#fff;
   text-decoration:none;
   font-size:.95rem;
-  opacity:.7;
+  opacity:.75;
   transition:.25s;
-  position:relative;
 }
 
 .topbar a:hover{
   opacity:1;
-}
-
-.topbar a.active{
-  opacity:1;
-  text-shadow:0 0 12px rgba(255,255,255,.4);
+  text-shadow:0 0 14px rgba(255,255,255,.5);
 }
 
 /* MAIN */
@@ -102,9 +97,15 @@ main{
 
 .hero img{
   height:180px;
-  width:auto;
+  width:auto;   /* ✅ FIXED as requested */
+  max-width:none;
+
   border-radius:50%;
-  box-shadow:0 0 50px rgba(255,255,255,.1);
+
+  /* 🔥 glow restored */
+  box-shadow:
+  0 0 25px rgba(255,255,255,.25),
+  0 0 80px rgba(255,255,255,.08);
 }
 
 .hero h1{
@@ -132,16 +133,26 @@ button{
   padding:12px 18px;
   border-radius:16px;
   cursor:pointer;
-  transition:.2s;
+  transition:.25s;
 
   background:rgba(255,255,255,.08);
   backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.12);
+
+  /* 🔥 glow restored */
+  box-shadow:
+  0 0 14px rgba(255,255,255,.08),
+  inset 0 0 10px rgba(255,255,255,.03);
 }
 
 button:hover{
   transform:translateY(-2px);
+
   background:rgba(255,255,255,.14);
+
+  box-shadow:
+  0 0 25px rgba(255,255,255,.25),
+  0 0 60px rgba(255,255,255,.08);
 }
 
 /* SECTIONS */
@@ -168,15 +179,25 @@ button:hover{
 .card{
   padding:28px;
   border-radius:24px;
+
   background:rgba(255,255,255,.05);
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(22px);
   border:1px solid rgba(255,255,255,.12);
+
+  /* 🔥 glow restored */
+  box-shadow:
+  0 0 25px rgba(255,255,255,.10),
+  inset 0 0 12px rgba(255,255,255,.03);
+
   transition:.25s;
 }
 
 .card:hover{
   transform:translateY(-6px);
-  background:rgba(255,255,255,.07);
+
+  box-shadow:
+  0 0 35px rgba(255,255,255,.18),
+  0 0 70px rgba(255,255,255,.06);
 }
 
 .card p{
@@ -201,7 +222,7 @@ footer{
   border-radius:50%;
   pointer-events:none;
   z-index:9999;
-  opacity:.8;
+  box-shadow:0 0 10px rgba(255,255,255,.6);
 }
 
 @media(max-width:700px){
@@ -220,9 +241,9 @@ footer{
 <canvas id="bg"></canvas>
 
 <div class="topbar">
-  <a href="#home" class="nav">Home</a>
-  <a href="#projects" class="nav">Projects</a>
-  <a href="#shop" class="nav">Shop</a>
+  <a href="#home">Home</a>
+  <a href="#projects">Projects</a>
+  <a href="#shop">Shop</a>
 </div>
 
 <main>
@@ -248,25 +269,16 @@ footer{
     <div class="card">
       <h3>ERROR MC</h3>
       <p>Minecraft community project with updates and gameplay.</p>
-      <div class="btn-row">
-        <button onclick="alert('Coming soon')">Open</button>
-      </div>
     </div>
 
     <div class="card">
       <h3>Main Website</h3>
       <p>The central hub for everything ERROR Corporation.</p>
-      <div class="btn-row">
-        <button onclick="alert('You are here')">Open</button>
-      </div>
     </div>
 
     <div class="card">
       <h3>Coming Soon</h3>
       <p>New projects are in development.</p>
-      <div class="btn-row">
-        <button onclick="alert('Stay tuned')">Preview</button>
-      </div>
     </div>
 
   </div>
@@ -288,11 +300,6 @@ footer{
       </div>
     </div>
 
-    <div class="card">
-      <h3>More Coming</h3>
-      <p>New merch drops planned soon.</p>
-    </div>
-
   </div>
 </section>
 
@@ -303,115 +310,9 @@ footer{
 </main>
 
 <script>
-
-/* CLICK SOUND (optimized) */
-const clickAudio = new Audio("data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA");
-clickAudio.volume = 0.15;
-
-function clickSound(){
-  clickAudio.currentTime = 0;
-  clickAudio.play();
-}
-
-document.querySelectorAll("button,a").forEach(el=>{
-  el.addEventListener("click", clickSound);
-});
-
-/* NAV SCROLL */
 function goTo(id){
   document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
-
-/* ACTIVE NAV */
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".nav");
-
-window.addEventListener("scroll",()=>{
-  let current = "";
-
-  sections.forEach(sec=>{
-    const top = sec.offsetTop;
-    if(pageYOffset >= top - 200){
-      current = sec.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach(link=>{
-    link.classList.remove("active");
-    if(link.getAttribute("href") === "#"+current){
-      link.classList.add("active");
-    }
-  });
-});
-
-/* BACKGROUND */
-const canvas=document.getElementById("bg");
-const ctx=canvas.getContext("2d");
-
-function resize(){
-  canvas.width=innerWidth;
-  canvas.height=innerHeight;
-}
-resize();
-addEventListener("resize",resize);
-
-const chars=["●","◦","▪","▫","·"];
-const size=18;
-let drops=[];
-
-function initDrops(){
-  const cols=Math.floor(innerWidth/size);
-  drops=Array(cols).fill(1);
-}
-initDrops();
-window.addEventListener("resize", initDrops);
-
-function draw(){
-  ctx.fillStyle="rgba(0,0,0,.08)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  ctx.fillStyle="rgba(255,255,255,.35)";
-  ctx.font=size+"px monospace";
-
-  for(let i=0;i<drops.length;i++){
-    const txt=chars[Math.floor(Math.random()*chars.length)];
-    ctx.fillText(txt,i*size,drops[i]*size);
-
-    if(drops[i]*size>canvas.height && Math.random()>.975){
-      drops[i]=0;
-    }
-    drops[i]++;
-  }
-}
-setInterval(draw,45);
-
-/* CURSOR TRAIL (lighter) */
-let trail=[];
-
-document.addEventListener("mousemove",e=>{
-  const t=document.createElement("div");
-  t.className="trail";
-  t.style.left=e.clientX+"px";
-  t.style.top=e.clientY+"px";
-  document.body.appendChild(t);
-
-  trail.push({el:t,life:1});
-});
-
-function animate(){
-  trail.forEach((t,i)=>{
-    t.life-=0.04;
-    t.el.style.opacity=t.life;
-
-    if(t.life<=0){
-      t.el.remove();
-      trail.splice(i,1);
-    }
-  });
-  requestAnimationFrame(animate);
-}
-animate();
-
 </script>
 
 </body>
