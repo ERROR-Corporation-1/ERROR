@@ -3,22 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERROR Corporation | Main Hub</title>
+<title>ERROR Corporation</title>
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
 <style>
-
-/* GLOBAL */
 *{
+  margin:0;
+  padding:0;
   box-sizing:border-box;
   font-family:"Arial Rounded MT Bold", Arial, sans-serif;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  margin:0;
-  color:white;
   background:#000;
+  color:#fff;
   overflow-x:hidden;
   cursor:none;
 }
@@ -34,129 +37,171 @@ body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:linear-gradient(to bottom, rgba(255,255,255,.04), rgba(0,0,0,.96));
+  background:
+  radial-gradient(circle at top, rgba(255,255,255,.05), transparent 45%),
+  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
   z-index:1;
 }
 
-/* TOP BUBBLE BAR (NO LINKS NOW) */
+/* TOP BAR */
 .topbar{
   position:fixed;
-  top:20px;
+  top:18px;
   left:50%;
   transform:translateX(-50%);
-  padding:12px 26px;
-  z-index:10;
+  z-index:50;
 
-  background:rgba(255,255,255,.07);
-  backdrop-filter:blur(22px);
-  border:1px solid rgba(255,255,255,.13);
+  padding:12px 26px;
   border-radius:999px;
+
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.14);
 
   box-shadow:
   0 0 20px rgba(255,255,255,.08),
-  inset 0 0 12px rgba(255,255,255,.03);
+  inset 0 0 10px rgba(255,255,255,.03);
 
-  font-size:.95rem;
-  opacity:.9;
+  display:flex;
+  gap:18px;
+  align-items:center;
 }
 
-/* HEADER */
-header{
-  text-align:center;
-  margin-top:115px;
+.topbar a{
+  color:#fff;
+  text-decoration:none;
+  font-size:.95rem;
+  opacity:.78;
+  transition:.25s;
+}
+
+.topbar a:hover{
+  opacity:1;
+  text-shadow:0 0 12px rgba(255,255,255,.45);
+}
+
+/* MAIN */
+main{
   position:relative;
   z-index:2;
+  padding:120px 16px 50px;
 }
 
-header img{
+/* HERO */
+.hero{
+  text-align:center;
+  max-width:900px;
+  margin:auto;
+}
+
+.hero img{
   height:180px;
   width:auto;
   border-radius:50%;
-
   box-shadow:
-  0 0 25px rgba(255,255,255,.14),
-  0 0 60px rgba(255,255,255,.06);
+  0 0 28px rgba(255,255,255,.14),
+  0 0 70px rgba(255,255,255,.05);
 }
 
-/* SUBTITLE */
-.subtitle{
-  text-align:center;
-  margin:18px 0 38px;
-  opacity:.65;
-  letter-spacing:.4px;
-  position:relative;
-  z-index:2;
+.hero h1{
+  margin-top:18px;
+  font-size:3rem;
 }
 
-/* PANELS */
-.panel{
-  width:320px;
-  max-width:92%;
-  margin:20px auto;
-  padding:30px;
+.hero p{
+  margin-top:12px;
+  opacity:.7;
+  font-size:1rem;
+}
+
+/* BUTTONS */
+.btn-row{
+  margin-top:28px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+}
+
+button{
+  border:none;
+  color:white;
+  padding:12px 18px;
+  border-radius:18px;
+  cursor:pointer;
+  transition:.25s;
+
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:0 0 16px rgba(255,255,255,.06);
+}
+
+button:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.14);
+  box-shadow:0 0 24px rgba(255,255,255,.12);
+}
+
+/* SECTIONS */
+.section{
+  margin-top:70px;
+}
+
+.section-title{
   text-align:center;
-  position:relative;
-  z-index:2;
+  font-size:2rem;
+  margin-bottom:25px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+/* CARD */
+.card{
+  padding:28px;
+  border-radius:28px;
 
   background:rgba(255,255,255,.055);
-  backdrop-filter:blur(26px);
+  backdrop-filter:blur(25px);
   border:1px solid rgba(255,255,255,.13);
-  border-radius:28px;
 
   box-shadow:
   0 0 24px rgba(255,255,255,.08),
   inset 0 0 14px rgba(255,255,255,.02);
 
-  transition:.35s ease;
+  transition:.28s;
 }
 
-.panel:hover{
-  transform:translateY(-7px) scale(1.015);
+.card:hover{
+  transform:translateY(-6px);
   box-shadow:
-  0 0 35px rgba(255,255,255,.14),
-  inset 0 0 18px rgba(255,255,255,.03);
+  0 0 34px rgba(255,255,255,.13),
+  inset 0 0 14px rgba(255,255,255,.03);
 }
 
-/* BUTTONS */
-button{
-  border:none;
-  padding:11px 18px;
-  border-radius:16px;
-  color:white;
-  cursor:pointer;
-  margin-top:10px;
-  transition:.3s;
-
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(18px);
-
-  box-shadow:0 0 14px rgba(255,255,255,.06);
+.card h3{
+  margin-bottom:10px;
 }
 
-button:hover{
-  background:rgba(255,255,255,.14);
-  box-shadow:0 0 20px rgba(255,255,255,.12);
-}
-
-/* PROJECT GRID */
-.projects{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
-  padding:0 15px;
-  position:relative;
-  z-index:2;
+.card p{
+  opacity:.72;
+  line-height:1.45;
 }
 
 /* FOOTER */
 footer{
+  margin-top:70px;
   text-align:center;
-  margin:55px 0 20px;
   opacity:.45;
-  font-size:.8rem;
-  position:relative;
-  z-index:2;
+  font-size:.82rem;
 }
 
 /* CURSOR TRAIL */
@@ -164,73 +209,149 @@ footer{
   position:fixed;
   width:8px;
   height:8px;
-  background:white;
+  background:#fff;
   border-radius:4px;
-  opacity:.75;
   pointer-events:none;
   z-index:9999;
-  box-shadow:0 0 10px rgba(255,255,255,.6);
+  box-shadow:0 0 12px rgba(255,255,255,.65);
 }
 
+@media(max-width:700px){
+  .hero h1{font-size:2.2rem;}
+  .topbar{
+    gap:10px;
+    padding:10px 16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
+<canvas id="bg"></canvas>
 
+<!-- TOP BAR -->
 <div class="topbar">
-ERROR Corporation
+  <a href="#home">Home</a>
+  <a href="#projects">Projects</a>
+  <a href="#shop">Shop</a>
 </div>
 
-<header>
-<img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
-</header>
+<main>
 
-<div class="subtitle">
-Connecting All Systems & Projects
-</div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
 
-<!-- MAIN PANEL -->
-<div class="panel">
-<p><strong>Welcome to ERROR Corporation</strong></p>
-<p>Your central hub for all projects, systems, and experiments.</p>
-<button onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">
-Explore
-</button>
-</div>
+  <h1>ERROR Corporation</h1>
+
+  <p>
+    Welcome to our official home page. Explore projects, discover merch,
+    and see what’s new.
+  </p>
+
+  <div class="btn-row">
+    <button onclick="goTo('projects')">View Projects</button>
+    <button onclick="goTo('shop')">Visit Shop</button>
+  </div>
+</section>
 
 <!-- PROJECTS -->
-<div class="projects">
+<section class="section" id="projects">
+  <div class="section-title">Projects</div>
 
-<div class="panel">
-<p><strong>ERROR MC</strong></p>
-<p>Active Project</p>
-</div>
+  <div class="grid">
 
-<div class="panel">
-<p><strong>Official Hoodie</strong></p>
-<p>ERROR Corporation Merch</p>
-<button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop')">
-View Hoodie
-</button>
-</div>
+    <div class="card">
+      <h3>ERROR MC</h3>
+      <p>
+        Our Minecraft community project with fun gameplay and updates.
+      </p>
+      <div class="btn-row">
+        <button onclick="alert('Project page coming soon')">Open</button>
+      </div>
+    </div>
 
-<div class="panel">
-<p><strong>Future Projects</strong></p>
-<p>Coming Soon</p>
-</div>
+    <div class="card">
+      <h3>Main Website</h3>
+      <p>
+        The central home for everything connected to ERROR Corporation.
+      </p>
+      <div class="btn-row">
+        <button onclick="alert('You are already here')">Open</button>
+      </div>
+    </div>
 
-</div>
+    <div class="card">
+      <h3>Coming Soon</h3>
+      <p>
+        More creative projects are on the way.
+      </p>
+      <div class="btn-row">
+        <button onclick="alert('Stay tuned')">Preview</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="section" id="shop">
+  <div class="section-title">Shop</div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Official Hoodie</h3>
+      <p>
+        Comfortable, stylish, and official ERROR Corporation merch.
+      </p>
+
+      <div class="btn-row">
+        <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop')">
+          View Hoodie
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>More Merch Soon</h3>
+      <p>
+        New products and ideas are planned for the future.
+      </p>
+    </div>
+
+  </div>
+</section>
 
 <footer>
 © 2026 ERROR Corporation
 </footer>
 
+</main>
+
 <script>
 
-/* BACKGROUND EFFECT */
-const canvas=document.getElementById("matrix");
+/* CLICK SOUND */
+function clickSound(){
+  const audio = new Audio("data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA");
+  audio.volume = 0.18;
+  audio.play();
+}
+
+document.querySelectorAll("button,a").forEach(el=>{
+  el.addEventListener("click", clickSound);
+});
+
+/* NAV */
+function goTo(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+/* BACKGROUND */
+const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
 
 function resize(){
@@ -241,22 +362,22 @@ resize();
 addEventListener("resize",resize);
 
 const chars=["●","◦","▪","▫","·"];
-const fontSize=16;
-let columns=Math.floor(innerWidth/fontSize);
-let drops=Array(columns).fill(1);
+const size=16;
+let cols=Math.floor(innerWidth/size);
+let drops=Array(cols).fill(1);
 
 function draw(){
   ctx.fillStyle="rgba(0,0,0,.08)";
   ctx.fillRect(0,0,canvas.width,canvas.height);
 
   ctx.fillStyle="rgba(255,255,255,.45)";
-  ctx.font=fontSize+"px monospace";
+  ctx.font=size+"px monospace";
 
   for(let i=0;i<drops.length;i++){
-    const text=chars[Math.floor(Math.random()*chars.length)];
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    const txt=chars[Math.floor(Math.random()*chars.length)];
+    ctx.fillText(txt,i*size,drops[i]*size);
 
-    if(drops[i]*fontSize>canvas.height && Math.random()>.975){
+    if(drops[i]*size>canvas.height && Math.random()>.975){
       drops[i]=0;
     }
     drops[i]++;
@@ -288,7 +409,6 @@ function animate(){
       trail.splice(i,1);
     }
   });
-
   requestAnimationFrame(animate);
 }
 animate();
