@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ERROR Corporation</title>
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
@@ -16,40 +15,15 @@
   font-family:"Arial Rounded MT Bold", Arial, sans-serif;
 }
 
-html{scroll-behavior:smooth;}
-
-:root{
-  --glow: rgba(255,255,255,.28);
-  --glow-strong: rgba(255,255,255,.55);
+html{
+  scroll-behavior:smooth;
 }
 
 body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
-}
-
-/* LOADER */
-#loader{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:99999;
-  transition:opacity .8s ease;
-}
-
-#loader img{
-  width:120px;
-  animation:pop 1s ease forwards;
-  filter:drop-shadow(0 0 25px rgba(255,255,255,.4));
-}
-
-@keyframes pop{
-  from{transform:scale(.6);opacity:0;}
-  to{transform:scale(1);opacity:1;}
+  cursor:none;
 }
 
 /* BACKGROUND */
@@ -57,25 +31,19 @@ canvas{
   position:fixed;
   inset:0;
   z-index:0;
-  animation:hue 30s infinite linear;
-}
-
-@keyframes hue{
-  0%{filter:hue-rotate(0deg);}
-  50%{filter:hue-rotate(20deg);}
-  100%{filter:hue-rotate(0deg);}
 }
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at top, rgba(255,255,255,.07), transparent 55%),linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.97));
+  background:
+  radial-gradient(circle at top, rgba(255,255,255,.05), transparent 45%),
+  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
   z-index:1;
-  pointer-events:none;
 }
 
-/* TOPBAR */
+/* TOP BAR */
 .topbar{
   position:fixed;
   top:18px;
@@ -83,214 +51,367 @@ body::before{
   transform:translateX(-50%);
   z-index:50;
 
-  padding:14px 28px;
+  padding:12px 26px;
   border-radius:999px;
 
   background:rgba(255,255,255,.08);
   backdrop-filter:blur(22px);
   border:1px solid rgba(255,255,255,.14);
 
-  box-shadow:0 0 28px rgba(255,255,255,.2);
+  box-shadow:
+  0 0 20px rgba(255,255,255,.08),
+  inset 0 0 10px rgba(255,255,255,.03);
 
   display:flex;
   gap:18px;
+  align-items:center;
 }
 
 .topbar a{
   color:#fff;
   text-decoration:none;
-  opacity:.75;
+  font-size:.95rem;
+  opacity:.78;
   transition:.25s;
 }
 
 .topbar a:hover{
   opacity:1;
-  text-shadow:0 0 15px #fff;
+  text-shadow:0 0 12px rgba(255,255,255,.45);
 }
 
 /* MAIN */
 main{
   position:relative;
   z-index:2;
-  padding:120px 16px 60px;
-  text-align:center;
+  padding:120px 16px 50px;
 }
 
 /* HERO */
+.hero{
+  text-align:center;
+  max-width:900px;
+  margin:auto;
+}
+
 .hero img{
   height:180px;
   width:auto;
-  opacity:0;
-  transform:scale(.75);
-  animation:logoIn 1.4s ease forwards;
-  filter:drop-shadow(0 0 30px var(--glow));
-}
-
-@keyframes logoIn{
-  to{opacity:1; transform:scale(1);}
+  border-radius:50%;
+  box-shadow:
+  0 0 28px rgba(255,255,255,.14),
+  0 0 70px rgba(255,255,255,.05);
 }
 
 .hero h1{
-  font-size:3rem;
   margin-top:18px;
-  text-shadow:0 0 18px rgba(255,255,255,.1);
+  font-size:3rem;
 }
 
-.hero p{opacity:.75;margin-top:10px;}
+.hero p{
+  margin-top:12px;
+  opacity:.7;
+  font-size:1rem;
+}
+
+/* BUTTONS */
+.btn-row{
+  margin-top:28px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+}
+
+button{
+  border:none;
+  color:white;
+  padding:12px 18px;
+  border-radius:18px;
+  cursor:pointer;
+  transition:.25s;
+
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:0 0 16px rgba(255,255,255,.06);
+}
+
+button:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.14);
+  box-shadow:0 0 24px rgba(255,255,255,.12);
+}
 
 /* SECTIONS */
-.section{margin-top:90px;max-width:1000px;margin:auto;}
-.section-title{text-align:center;font-size:2rem;margin-bottom:25px;}
+.section{
+  margin-top:70px;
+}
+
+.section-title{
+  text-align:center;
+  font-size:2rem;
+  margin-bottom:25px;
+}
 
 /* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-  margin-top:30px;
+  gap:20px;
+  max-width:1100px;
+  margin:auto;
 }
 
-/* CARDS (MORE RADIUS + FUTURISTIC GLOW) */
-.card, .shop-card{
+/* CARD */
+.card{
   padding:28px;
   border-radius:28px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.14);
 
-  backdrop-filter:blur(22px);
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(25px);
+  border:1px solid rgba(255,255,255,.13);
 
   box-shadow:
-    0 0 18px rgba(255,255,255,.08),
-    inset 0 0 12px rgba(255,255,255,.03);
+  0 0 24px rgba(255,255,255,.08),
+  inset 0 0 14px rgba(255,255,255,.02);
 
-  transition:.3s;
+  transition:.28s;
 }
 
-.card:hover, .shop-card:hover{
+.card:hover{
   transform:translateY(-6px);
   box-shadow:
-    0 0 35px var(--glow),
-    0 0 80px rgba(255,255,255,.06);
+  0 0 34px rgba(255,255,255,.13),
+  inset 0 0 14px rgba(255,255,255,.03);
 }
 
-/* BUTTONS */
-button{
-  margin-top:12px;
-  padding:12px 18px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.06);
-  color:#fff;
-  cursor:pointer;
-  transition:.25s;
-  box-shadow:0 0 12px rgba(255,255,255,.08);
+.card h3{
+  margin-bottom:10px;
 }
 
-button:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 25px var(--glow-strong);
+.card p{
+  opacity:.72;
+  line-height:1.45;
 }
 
 /* FOOTER */
 footer{
-  margin-top:80px;
-  opacity:.4;
-  font-size:.8rem;
+  margin-top:70px;
+  text-align:center;
+  opacity:.45;
+  font-size:.82rem;
 }
 
+/* CURSOR TRAIL */
+.trail{
+  position:fixed;
+  width:8px;
+  height:8px;
+  background:#fff;
+  border-radius:4px;
+  pointer-events:none;
+  z-index:9999;
+  box-shadow:0 0 12px rgba(255,255,255,.65);
+}
+
+@media(max-width:700px){
+  .hero h1{font-size:2.2rem;}
+  .topbar{
+    gap:10px;
+    padding:10px 16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <img src="assets/ERROR Logo 1.png">
-</div>
-
 <canvas id="bg"></canvas>
 
+<!-- TOP BAR -->
 <div class="topbar">
   <a href="#home">Home</a>
-  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
   <a href="#shop">Shop</a>
 </div>
 
 <main>
 
+<!-- HERO -->
 <section class="hero" id="home">
-  <img src="assets/ERROR Logo 1.png">
-  <h1>ERROR Corporation</h1>
-  <p>Future-built creative identity system.</p>
-</section>
+  <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
 
-<section class="section" id="about">
-  <h2 class="section-title">About</h2>
-  <p style="opacity:.75;max-width:700px;margin:auto;line-height:1.6">
-    ERROR Corporation is a futuristic creative brand focused on design, ideas, and digital expression.
+  <h1>ERROR Corporation</h1>
+
+  <p>
+    Welcome to our official home page. Explore projects, discover merch,
+    and see what’s new.
   </p>
 
-  <div class="grid">
-    <div class="card">Minimal Design Language</div>
-    <div class="card">Futuristic Identity</div>
-    <div class="card">Experimental Visuals</div>
+  <div class="btn-row">
+    <button onclick="goTo('projects')">View Projects</button>
+    <button onclick="goTo('shop')">Visit Shop</button>
   </div>
 </section>
 
-<section class="section" id="shop">
-  <h2 class="section-title">Shop</h2>
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-title">Projects</div>
 
   <div class="grid">
-    <div class="shop-card">
-      <h3>Official Hoodie</h3>
-      <p>Premium ERROR design.</p>
-      <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie')">View</button>
+
+    <div class="card">
+      <h3>ERROR MC</h3>
+      <p>
+        Our Minecraft community project with fun gameplay and updates.
+      </p>
+      <div class="btn-row">
+        <button onclick="alert('Project page coming soon')">Open</button>
+      </div>
     </div>
+
+    <div class="card">
+      <h3>Main Website</h3>
+      <p>
+        The central home for everything connected to ERROR Corporation.
+      </p>
+      <div class="btn-row">
+        <button onclick="alert('You are already here')">Open</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Coming Soon</h3>
+      <p>
+        More creative projects are on the way.
+      </p>
+      <div class="btn-row">
+        <button onclick="alert('Stay tuned')">Preview</button>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<footer>© 2026 ERROR Corporation</footer>
+<!-- SHOP -->
+<section class="section" id="shop">
+  <div class="section-title">Shop</div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Official Hoodie</h3>
+      <p>
+        Comfortable, stylish, and official ERROR Corporation merch.
+      </p>
+
+      <div class="btn-row">
+        <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop')">
+          View Hoodie
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>More Merch Soon</h3>
+      <p>
+        New products and ideas are planned for the future.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+© 2026 ERROR Corporation
+</footer>
 
 </main>
 
 <script>
 
-/* LOADER */
-window.addEventListener("load",()=>{
-  const l=document.getElementById("loader");
-  setTimeout(()=>{
-    l.style.opacity="0";
-    setTimeout(()=>l.remove(),800);
-  },1200);
+/* CLICK SOUND */
+function clickSound(){
+  const audio = new Audio("data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA");
+  audio.volume = 0.18;
+  audio.play();
+}
+
+document.querySelectorAll("button,a").forEach(el=>{
+  el.addEventListener("click", clickSound);
 });
 
-/* PARTICLES */
-const c=document.getElementById("bg");
-const x=c.getContext("2d");
-
-function r(){c.width=innerWidth;c.height=innerHeight;}
-r();addEventListener("resize",r);
-
-const p=[];
-for(let i=0;i<100;i++)p.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,dx:(Math.random()-.5)*0.35,dy:(Math.random()-.5)*0.35,r:Math.random()*2});
-
-function d(){
-  x.fillStyle="rgba(0,0,0,.25)";
-  x.fillRect(0,0,c.width,c.height);
-
-  x.fillStyle="rgba(255,255,255,.35)";
-
-  p.forEach(o=>{
-    o.x+=o.dx;o.y+=o.dy;
-    if(o.x<0||o.x>innerWidth)o.dx*=-1;
-    if(o.y<0||o.y>innerHeight)o.dy*=-1;
-
-    x.beginPath();x.arc(o.x,o.y,o.r,0,Math.PI*2);x.fill();
-  });
-
-  requestAnimationFrame(d);
+/* NAV */
+function goTo(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
-d();
+
+/* BACKGROUND */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+const chars=["●","◦","▪","▫","·"];
+const size=16;
+let cols=Math.floor(innerWidth/size);
+let drops=Array(cols).fill(1);
+
+function draw(){
+  ctx.fillStyle="rgba(0,0,0,.08)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle="rgba(255,255,255,.45)";
+  ctx.font=size+"px monospace";
+
+  for(let i=0;i<drops.length;i++){
+    const txt=chars[Math.floor(Math.random()*chars.length)];
+    ctx.fillText(txt,i*size,drops[i]*size);
+
+    if(drops[i]*size>canvas.height && Math.random()>.975){
+      drops[i]=0;
+    }
+    drops[i]++;
+  }
+}
+setInterval(draw,40);
+
+/* CURSOR TRAIL */
+const trail=[];
+
+document.addEventListener("mousemove",e=>{
+  const t=document.createElement("div");
+  t.className="trail";
+  t.style.left=e.clientX+"px";
+  t.style.top=e.clientY+"px";
+  document.body.appendChild(t);
+
+  trail.push({el:t,life:1});
+});
+
+function animate(){
+  trail.forEach((t,i)=>{
+    t.life-=0.03;
+    t.el.style.opacity=t.life;
+    t.el.style.transform=`scale(${t.life})`;
+
+    if(t.life<=0){
+      t.el.remove();
+      trail.splice(i,1);
+    }
+  });
+  requestAnimationFrame(animate);
+}
+animate();
 
 </script>
 
