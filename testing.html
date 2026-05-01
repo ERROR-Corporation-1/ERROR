@@ -144,6 +144,11 @@ button:hover{
   box-shadow:0 0 24px rgba(255,255,255,.12);
 }
 
+button:disabled{
+  opacity:.5;
+  cursor:default;
+}
+
 /* SECTIONS */
 .section{
   margin-top:70px;
@@ -270,7 +275,9 @@ footer{
         Our Minecraft community project with fun gameplay and updates.
       </p>
       <div class="btn-row">
-        <button onclick="alert('Project page coming soon')">Open</button>
+        <button onclick="window.open('https://error-corporation-1.github.io/ERROR.MC/index.html','_blank')">
+          Open
+        </button>
       </div>
     </div>
 
@@ -280,7 +287,7 @@ footer{
         The central home for everything connected to ERROR Corporation.
       </p>
       <div class="btn-row">
-        <button onclick="alert('You are already here')">Open</button>
+        <button onclick="goTo('home')">Open</button>
       </div>
     </div>
 
@@ -290,7 +297,7 @@ footer{
         More creative projects are on the way.
       </p>
       <div class="btn-row">
-        <button onclick="alert('Stay tuned')">Preview</button>
+        <button disabled>Soon</button>
       </div>
     </div>
 
@@ -310,7 +317,7 @@ footer{
       </p>
 
       <div class="btn-row">
-        <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop')">
+        <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop','_blank')">
           View Hoodie
         </button>
       </div>
