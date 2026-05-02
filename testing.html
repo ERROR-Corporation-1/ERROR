@@ -26,21 +26,15 @@ body{
   cursor:none;
 }
 
-/* BACKGROUND */
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:0;
-}
-
+/* STATIC BACKGROUND (no animation) */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-  radial-gradient(circle at top, rgba(255,255,255,.05), transparent 45%),
+  radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
   linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
-  z-index:1;
+  z-index:0;
 }
 
 /* TOP BAR */
@@ -51,7 +45,7 @@ body::before{
   transform:translateX(-50%);
   z-index:50;
 
-  padding:12px 26px;
+  padding:12px 22px;
   border-radius:999px;
 
   background:rgba(255,255,255,.08);
@@ -144,11 +138,6 @@ button:hover{
   box-shadow:0 0 24px rgba(255,255,255,.12);
 }
 
-button:disabled{
-  opacity:.5;
-  cursor:default;
-}
-
 /* SECTIONS */
 .section{
   margin-top:70px;
@@ -225,7 +214,7 @@ footer{
   .hero h1{font-size:2.2rem;}
   .topbar{
     gap:10px;
-    padding:10px 16px;
+    padding:10px 14px;
     flex-wrap:wrap;
     justify-content:center;
   }
@@ -235,13 +224,13 @@ footer{
 
 <body>
 
-<canvas id="bg"></canvas>
-
 <!-- TOP BAR -->
 <div class="topbar">
-  <a href="#home">Home</a>
-  <a href="#projects">Projects</a>
-  <a href="#shop">Shop</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXEn_BWh1ZwNuyaw4x7fOOBGvRtyk2KIT_hL7FhNL-2d5Axw/viewform?usp=dialog" target="_blank">Ask ERROR</a>
+
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBXrL3Z6dZDh78McRsDKgDXkot30GT3YqbpFdmCn1U5AMmjQ/viewform?usp=header" target="_blank">Share Ideas</a>
+
+  <a href="https://error-corporation-1.github.io/ERROR/help.html">Help</a>
 </div>
 
 <main>
@@ -253,67 +242,60 @@ footer{
   <h1>ERROR Corporation</h1>
 
   <p>
-    Welcome to our official home page. Explore projects, discover merch,
-    and see what’s new.
+    Welcome to the official ERROR Corporation website. Explore ERROR MC, discover updates, and connect with the community.
   </p>
 
   <div class="btn-row">
-    <button onclick="goTo('projects')">View Projects</button>
-    <button onclick="goTo('shop')">Visit Shop</button>
+    <button onclick="window.open('https://error-corporation-1.github.io/ERROR.MC/index.html','_blank')">
+      ERROR MC
+    </button>
+
+    <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdXEn_BWh1ZwNuyaw4x7fOOBGvRtyk2KIT_hL7FhNL-2d5Axw/viewform?usp=dialog','_blank')">
+      Ask ERROR
+    </button>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="section" id="projects">
-  <div class="section-title">Projects</div>
+<!-- PROJECTS (CLEANED INTO REAL USEFUL INFO) -->
+<section class="section">
+  <div class="section-title">ERROR Hub</div>
 
   <div class="grid">
 
     <div class="card">
       <h3>ERROR MC</h3>
       <p>
-        Our Minecraft community project with fun gameplay and updates.
+        Our Minecraft Bedrock server community. Join, play, and explore updates.
       </p>
-      <div class="btn-row">
-        <button onclick="window.open('https://error-corporation-1.github.io/ERROR.MC/index.html','_blank')">
-          Open
-        </button>
-      </div>
     </div>
 
     <div class="card">
-      <h3>Main Website</h3>
+      <h3>About ERROR</h3>
       <p>
-        The central home for everything connected to ERROR Corporation.
+        ERROR Corporation is a creative project brand focused on games, ideas, and future digital projects.
       </p>
-      <div class="btn-row">
-        <button onclick="goTo('home')">Open</button>
-      </div>
     </div>
 
     <div class="card">
-      <h3>Coming Soon</h3>
+      <h3>Updates</h3>
       <p>
-        More creative projects are on the way.
+        New features, projects, and improvements will be announced here over time.
       </p>
-      <div class="btn-row">
-        <button disabled>Soon</button>
-      </div>
     </div>
 
   </div>
 </section>
 
-<!-- SHOP -->
-<section class="section" id="shop">
-  <div class="section-title">Shop</div>
+<!-- SHOP SECTION SIMPLIFIED -->
+<section class="section">
+  <div class="section-title">Merch</div>
 
   <div class="grid">
 
     <div class="card">
       <h3>Official Hoodie</h3>
       <p>
-        Comfortable, stylish, and official ERROR Corporation merch.
+        Official ERROR Corporation merchandise designed for the community.
       </p>
 
       <div class="btn-row">
@@ -324,9 +306,9 @@ footer{
     </div>
 
     <div class="card">
-      <h3>More Merch Soon</h3>
+      <h3>New Releases</h3>
       <p>
-        New products and ideas are planned for the future.
+        Future merch drops and designs will appear here.
       </p>
     </div>
 
@@ -351,46 +333,6 @@ function clickSound(){
 document.querySelectorAll("button,a").forEach(el=>{
   el.addEventListener("click", clickSound);
 });
-
-/* NAV */
-function goTo(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-/* BACKGROUND */
-const canvas=document.getElementById("bg");
-const ctx=canvas.getContext("2d");
-
-function resize(){
-  canvas.width=innerWidth;
-  canvas.height=innerHeight;
-}
-resize();
-addEventListener("resize",resize);
-
-const chars=["●","◦","▪","▫","·"];
-const size=16;
-let cols=Math.floor(innerWidth/size);
-let drops=Array(cols).fill(1);
-
-function draw(){
-  ctx.fillStyle="rgba(0,0,0,.08)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  ctx.fillStyle="rgba(255,255,255,.45)";
-  ctx.font=size+"px monospace";
-
-  for(let i=0;i<drops.length;i++){
-    const txt=chars[Math.floor(Math.random()*chars.length)];
-    ctx.fillText(txt,i*size,drops[i]*size);
-
-    if(drops[i]*size>canvas.height && Math.random()>.975){
-      drops[i]=0;
-    }
-    drops[i]++;
-  }
-}
-setInterval(draw,40);
 
 /* CURSOR TRAIL */
 const trail=[];
