@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple AI Chatbot</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f0f1a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #chat {
+      width: 400px;
+      background: #1c1c2e;
+      padding: 15px;
+      border-radius: 12px;
+    }
+    #messages {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #333;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    input {
+      width: 75%;
+      padding: 8px;
+    }
+    button {
+      width: 20%;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .user { color: #4fc3f7; }
+    .ai { color: #81c784; }
+  </style>
+</head>
+<body>
+
+<div id="chat">
+  <div id="messages"></div>
+  <input id="input" placeholder="Say something..." />
+  <button onclick="send()">Send</button>
+</div>
+
+<script>
+function addMessage(sender, text) {
+  const msg = document.createElement("div");
+  msg.innerHTML = `<b class="${sender}">${sender}:</b> ${text}`;
+  document.getElementById("messages").appendChild(msg);
+}
+
+function aiResponse(input) {
+  input = input.toLowerCase();
+
+  if (input.includes("hello")) return "Hi there!";
+  if (input.includes("how are you")) return "I'm just code, but I'm doing fine.";
+  if (input.includes("name")) return "I'm your simple AI chatbot.";
+  if (input.includes("help")) return "Try saying hello or asking a question.";
+
+  return "I don't fully understand that yet, but I'm learning!";
+}
+
+function send() {
+  const input = document.getElementById("input");
+  const text = input.value;
+  if (!text) return;
+
+  addMessage("user", text);
+  addMessage("ai", aiResponse(text));
+
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
