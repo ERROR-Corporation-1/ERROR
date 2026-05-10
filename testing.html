@@ -26,7 +26,7 @@ body{
   cursor:none;
 }
 
-/* STATIC BACKGROUND (no animation) */
+/* STATIC BACKGROUND */
 body::before{
   content:"";
   position:fixed;
@@ -224,19 +224,23 @@ footer{
 
 <body>
 
-<!-- TOP BAR -->
+<!-- TOP BAR (UPDATED: Ask ERROR is now AI) -->
 <div class="topbar">
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXEn_BWh1ZwNuyaw4x7fOOBGvRtyk2KIT_hL7FhNL-2d5Axw/viewform?usp=dialog" target="_blank">Ask ERROR</a>
+  <a href="#" onclick="openAI()">Ask ERROR</a>
 
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBXrL3Z6dZDh78McRsDKgDXkot30GT3YqbpFdmCn1U5AMmjQ/viewform?usp=header" target="_blank">Share Ideas</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBXrL3Z6dZDh78McRsDKgDXkot30GT3YqbpFdmCn1U5AMmjQ/viewform?usp=header" target="_blank">
+    Share Ideas
+  </a>
 
-  <a href="https://error-corporation-1.github.io/ERROR/help.html">Help</a>
+  <a href="https://error-corporation-1.github.io/ERROR/help.html" target="_blank">
+    Help
+  </a>
 </div>
 
 <main>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section class="hero">
   <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
 
   <h1>ERROR Corporation</h1>
@@ -250,13 +254,13 @@ footer{
       ERROR MC
     </button>
 
-    <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdXEn_BWh1ZwNuyaw4x7fOOBGvRtyk2KIT_hL7FhNL-2d5Axw/viewform?usp=dialog','_blank')">
-      Ask ERROR
+    <button onclick="openAI()">
+      Ask ERROR AI
     </button>
   </div>
 </section>
 
-<!-- PROJECTS (CLEANED INTO REAL USEFUL INFO) -->
+<!-- HUB -->
 <section class="section">
   <div class="section-title">ERROR Hub</div>
 
@@ -286,7 +290,7 @@ footer{
   </div>
 </section>
 
-<!-- SHOP SECTION SIMPLIFIED -->
+<!-- MERCH -->
 <section class="section">
   <div class="section-title">Merch</div>
 
@@ -305,13 +309,6 @@ footer{
       </div>
     </div>
 
-    <div class="card">
-      <h3>New Releases</h3>
-      <p>
-        Future merch drops and designs will appear here.
-      </p>
-    </div>
-
   </div>
 </section>
 
@@ -323,44 +320,14 @@ footer{
 
 <script>
 
-/* CLICK SOUND */
-function clickSound(){
-  const audio = new Audio("data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA");
-  audio.volume = 0.18;
-  audio.play();
+/* SIMPLE AI PROMPT (FRONTEND ONLY) */
+async function openAI(){
+  const message = prompt("Ask ERROR AI:");
+
+  if(!message) return;
+
+  alert("AI is not connected yet. Backend setup required (Vercel + OpenRouter).");
 }
-
-document.querySelectorAll("button,a").forEach(el=>{
-  el.addEventListener("click", clickSound);
-});
-
-/* CURSOR TRAIL */
-const trail=[];
-
-document.addEventListener("mousemove",e=>{
-  const t=document.createElement("div");
-  t.className="trail";
-  t.style.left=e.clientX+"px";
-  t.style.top=e.clientY+"px";
-  document.body.appendChild(t);
-
-  trail.push({el:t,life:1});
-});
-
-function animate(){
-  trail.forEach((t,i)=>{
-    t.life-=0.03;
-    t.el.style.opacity=t.life;
-    t.el.style.transform=`scale(${t.life})`;
-
-    if(t.life<=0){
-      t.el.remove();
-      trail.splice(i,1);
-    }
-  });
-  requestAnimationFrame(animate);
-}
-animate();
 
 </script>
 
