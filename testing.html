@@ -198,16 +198,17 @@ footer{
   font-size:.82rem;
 }
 
-/* CURSOR TRAIL */
+/* CURSOR FIXED (VISIBLE NOW) */
 .trail{
   position:fixed;
-  width:8px;
-  height:8px;
+  width:10px;
+  height:10px;
   background:#fff;
-  border-radius:4px;
+  border-radius:50%;
   pointer-events:none;
   z-index:9999;
-  box-shadow:0 0 12px rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(255,255,255,.9);
+  transition:opacity .15s linear;
 }
 
 @media(max-width:700px){
@@ -224,7 +225,7 @@ footer{
 
 <body>
 
-<!-- TOP BAR (UPDATED: Ask ERROR is now AI) -->
+<!-- TOP BAR (ONLY ONE ASK ERROR) -->
 <div class="topbar">
   <a href="#" onclick="openAI()">Ask ERROR</a>
 
@@ -239,7 +240,7 @@ footer{
 
 <main>
 
-<!-- HERO -->
+<!-- HERO (NO EXTRA ASK BUTTON HERE) -->
 <section class="hero">
   <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
 
@@ -252,10 +253,6 @@ footer{
   <div class="btn-row">
     <button onclick="window.open('https://error-corporation-1.github.io/ERROR.MC/index.html','_blank')">
       ERROR MC
-    </button>
-
-    <button onclick="openAI()">
-      Ask ERROR AI
     </button>
   </div>
 </section>
@@ -320,14 +317,56 @@ footer{
 
 <script>
 
-/* SIMPLE AI PROMPT (FRONTEND ONLY) */
+/* AI TRIGGER (REAL BACKEND READY) */
 async function openAI(){
   const message = prompt("Ask ERROR AI:");
 
   if(!message) return;
 
-  alert("AI is not connected yet. Backend setup required (Vercel + OpenRouter).");
+  try {
+    const res = await fetch("/api/ai", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+
+    alert(data.reply || "No response from ERROR AI.");
+  } catch (err) {
+    alert("ERROR AI is not connected yet.");
+  }
 }
+
+/* CURSOR TRAIL (FIXED VISIBILITY) */
+const trail = [];
+
+document.addEventListener("mousemove", e => {
+  const t = document.createElement("div");
+  t.className = "trail";
+  t.style.left = e.clientX + "px";
+  t.style.top = e.clientY + "px";
+  document.body.appendChild(t);
+
+  trail.push({ el: t, life: 1 });
+});
+
+function animate(){
+  trail.forEach((t, i) => {
+    t.life -= 0.03;
+    t.el.style.opacity = t.life;
+
+    if(t.life <= 0){
+      t.el.remove();
+      trail.splice(i, 1);
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
 
 </script>
 
