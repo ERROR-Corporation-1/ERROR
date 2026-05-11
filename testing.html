@@ -7,12 +7,18 @@
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
+<!-- FONT FIX -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Arial Rounded MT Bold", Arial, sans-serif;
+  font-family:"Orbitron", sans-serif;
 }
 
 html{
@@ -198,50 +204,85 @@ footer{
   font-size:.82rem;
 }
 
-/* CURSOR FIXED (VISIBLE NOW) */
-.trail{
+/* OPTIMIZED CURSOR */
+.cursor{
   position:fixed;
-  width:10px;
-  height:10px;
-  background:#fff;
+  width:18px;
+  height:18px;
   border-radius:50%;
   pointer-events:none;
   z-index:9999;
-  box-shadow:0 0 18px rgba(255,255,255,.9);
-  transition:opacity .15s linear;
+
+  background:rgba(255,255,255,.9);
+
+  box-shadow:
+  0 0 18px rgba(255,255,255,.75),
+  0 0 40px rgba(255,255,255,.28);
+
+  transform:translate(-50%,-50%);
+  transition:
+  transform .08s linear,
+  width .2s ease,
+  height .2s ease,
+  opacity .2s ease;
+}
+
+/* HOVER EFFECT */
+.cursor.active{
+  width:28px;
+  height:28px;
+
+  background:rgba(255,255,255,.95);
+
+  box-shadow:
+  0 0 24px rgba(255,255,255,.85),
+  0 0 60px rgba(255,255,255,.35);
 }
 
 @media(max-width:700px){
-  .hero h1{font-size:2.2rem;}
+
+  .hero h1{
+    font-size:2.2rem;
+  }
+
   .topbar{
     gap:10px;
     padding:10px 14px;
     flex-wrap:wrap;
     justify-content:center;
   }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR (ONLY ONE ASK ERROR) -->
+<!-- CUSTOM CURSOR -->
+<div class="cursor"></div>
+
+<!-- TOP BAR -->
 <div class="topbar">
-  <a href="#" onclick="openAI()">Ask ERROR</a>
+
+  <a href="ai.html" target="_blank">
+    Ask ERROR
+  </a>
 
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBXrL3Z6dZDh78McRsDKgDXkot30GT3YqbpFdmCn1U5AMmjQ/viewform?usp=header" target="_blank">
     Share Ideas
   </a>
 
-  <a href="https://error-corporation-1.github.io/ERROR/help.html" target="_blank">
+  <a href="help.html" target="_blank">
     Help
   </a>
+
 </div>
 
 <main>
 
-<!-- HERO (NO EXTRA ASK BUTTON HERE) -->
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="home">
+
   <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
 
   <h1>ERROR Corporation</h1>
@@ -251,62 +292,101 @@ footer{
   </p>
 
   <div class="btn-row">
+
     <button onclick="window.open('https://error-corporation-1.github.io/ERROR.MC/index.html','_blank')">
       ERROR MC
     </button>
+
   </div>
+
 </section>
 
-<!-- HUB -->
+<!-- ERROR HUB -->
 <section class="section">
+
   <div class="section-title">ERROR Hub</div>
 
   <div class="grid">
 
     <div class="card">
+
       <h3>ERROR MC</h3>
+
       <p>
         Our Minecraft Bedrock server community. Join, play, and explore updates.
       </p>
+
     </div>
 
     <div class="card">
-      <h3>About ERROR</h3>
+
+      <h3>ERROR Origin</h3>
+
       <p>
-        ERROR Corporation is a creative project brand focused on games, ideas, and future digital projects.
+        The true history of ERROR Corporation. Where it all began.
       </p>
+
+      <div class="btn-row">
+
+        <button onclick="window.open('origin.html','_blank')">
+          Open Origin
+        </button>
+
+      </div>
+
     </div>
 
     <div class="card">
+
       <h3>Updates</h3>
+
       <p>
         New features, projects, and improvements will be announced here over time.
       </p>
+
     </div>
 
   </div>
+
 </section>
 
 <!-- MERCH -->
 <section class="section">
+
   <div class="section-title">Merch</div>
 
   <div class="grid">
 
     <div class="card">
+
       <h3>Official Hoodie</h3>
+
       <p>
         Official ERROR Corporation merchandise designed for the community.
       </p>
 
       <div class="btn-row">
+
         <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop','_blank')">
           View Hoodie
         </button>
+
       </div>
+
+    </div>
+
+    <div class="card">
+
+      <h3>New Releases</h3>
+
+      <p>
+        Future merch drops and designs will appear here.
+      </p>
+
     </div>
 
   </div>
+
 </section>
 
 <footer>
@@ -317,56 +397,69 @@ footer{
 
 <script>
 
-/* AI TRIGGER (REAL BACKEND READY) */
-async function openAI(){
-  const message = prompt("Ask ERROR AI:");
+/* CLICK SOUND */
+function clickSound(){
 
-  if(!message) return;
+  const audio = new Audio(
+    "data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA"
+  );
 
-  try {
-    const res = await fetch("/api/ai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message })
-    });
+  audio.volume = 0.18;
 
-    const data = await res.json();
-
-    alert(data.reply || "No response from ERROR AI.");
-  } catch (err) {
-    alert("ERROR AI is not connected yet.");
-  }
+  audio.play();
 }
 
-/* CURSOR TRAIL (FIXED VISIBILITY) */
-const trail = [];
+document.querySelectorAll("button,a").forEach(el=>{
 
-document.addEventListener("mousemove", e => {
-  const t = document.createElement("div");
-  t.className = "trail";
-  t.style.left = e.clientX + "px";
-  t.style.top = e.clientY + "px";
-  document.body.appendChild(t);
+  el.addEventListener("click", clickSound);
 
-  trail.push({ el: t, life: 1 });
 });
 
-function animate(){
-  trail.forEach((t, i) => {
-    t.life -= 0.03;
-    t.el.style.opacity = t.life;
+/* OPTIMIZED FUTURISTIC CURSOR */
+const cursor = document.querySelector(".cursor");
 
-    if(t.life <= 0){
-      t.el.remove();
-      trail.splice(i, 1);
-    }
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+let currentX = mouseX;
+let currentY = mouseY;
+
+document.addEventListener("mousemove", e=>{
+
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+});
+
+function animateCursor(){
+
+  currentX += (mouseX - currentX) * 0.18;
+  currentY += (mouseY - currentY) * 0.18;
+
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
+
+  requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+/* CURSOR HOVER EFFECT */
+document.querySelectorAll("button,a,.card").forEach(el=>{
+
+  el.addEventListener("mouseenter", ()=>{
+
+    cursor.classList.add("active");
+
   });
 
-  requestAnimationFrame(animate);
-}
-animate();
+  el.addEventListener("mouseleave", ()=>{
+
+    cursor.classList.remove("active");
+
+  });
+
+});
 
 </script>
 
