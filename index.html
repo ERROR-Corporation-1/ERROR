@@ -221,7 +221,6 @@ footer{
   opacity .2s ease;
 }
 
-/* HOVER EFFECT */
 .cursor.active{
   width:28px;
   height:28px;
@@ -250,29 +249,23 @@ footer{
 
 <body>
 
-<!-- CUSTOM CURSOR -->
 <div class="cursor"></div>
 
-<!-- TOP BAR -->
+<!-- TOP BAR (FIXED LINKS ONLY) -->
 <div class="topbar">
 
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXEn_BWh1ZwNuyaw4x7fOOBGvRtyk2KIT_hL7FhNL-2d5Axw/viewform?usp=dialog" target="_blank">
-    Ask ERROR
-  </a>
+  <a href="ai.html" target="_blank">Ask ERROR</a>
 
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBXrL3Z6dZDh78McRsDKgDXkot30GT3YqbpFdmCn1U5AMmjQ/viewform?usp=header" target="_blank">
     Share Ideas
   </a>
 
-  <a href="https://error-corporation-1.github.io/ERROR/help.html" target="_blank">
-    Help
-  </a>
+  <a href="help.html" target="_blank">Help</a>
 
 </div>
 
 <main>
 
-<!-- HERO -->
 <section class="hero" id="home">
 
   <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
@@ -293,7 +286,6 @@ footer{
 
 </section>
 
-<!-- ERROR HUB -->
 <section class="section">
 
   <div class="section-title">ERROR Hub</div>
@@ -302,39 +294,30 @@ footer{
 
     <div class="card">
       <h3>ERROR MC</h3>
-
-      <p>
-        Our Minecraft Bedrock server community. Join, play, and explore updates.
-      </p>
+      <p>Our Minecraft Bedrock server community. Join, play, and explore updates.</p>
     </div>
 
     <div class="card">
       <h3>ERROR Origin</h3>
-
-      <p>
-        The true history of ERROR Corporation. Where it all began.
-      </p>
+      <p>The true history of ERROR Corporation. Where it all began.</p>
 
       <div class="btn-row">
-        <button onclick="window.open('https://error-corporation-1.github.io/ERROR/origin.html','_blank')">
+        <button onclick="window.open('origin.html','_blank')">
           Open Origin
         </button>
       </div>
+
     </div>
 
     <div class="card">
       <h3>Updates</h3>
-
-      <p>
-        New features, projects, and improvements will be announced here over time.
-      </p>
+      <p>New features, projects, and improvements will be announced here over time.</p>
     </div>
 
   </div>
 
 </section>
 
-<!-- MERCH -->
 <section class="section">
 
   <div class="section-title">Merch</div>
@@ -345,9 +328,7 @@ footer{
 
       <h3>Official Hoodie</h3>
 
-      <p>
-        Official ERROR Corporation merchandise designed for the community.
-      </p>
+      <p>Official ERROR Corporation merchandise designed for the community.</p>
 
       <div class="btn-row">
         <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop','_blank')">
@@ -358,13 +339,8 @@ footer{
     </div>
 
     <div class="card">
-
       <h3>New Releases</h3>
-
-      <p>
-        Future merch drops and designs will appear here.
-      </p>
-
+      <p>Future merch drops and designs will appear here.</p>
     </div>
 
   </div>
@@ -379,7 +355,6 @@ footer{
 
 <script>
 
-/* CLICK SOUND */
 function clickSound(){
   const audio = new Audio("data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA");
   audio.volume = 0.18;
@@ -390,11 +365,10 @@ document.querySelectorAll("button,a").forEach(el=>{
   el.addEventListener("click", clickSound);
 });
 
-/* OPTIMIZED FUTURISTIC CURSOR */
 const cursor = document.querySelector(".cursor");
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
+let mouseX = window.innerWidth/2;
+let mouseY = window.innerHeight/2;
 
 let currentX = mouseX;
 let currentY = mouseY;
@@ -405,9 +379,8 @@ document.addEventListener("mousemove", e=>{
 });
 
 function animateCursor(){
-
-  currentX += (mouseX - currentX) * 0.18;
-  currentY += (mouseY - currentY) * 0.18;
+  currentX += (mouseX-currentX)*0.18;
+  currentY += (mouseY-currentY)*0.18;
 
   cursor.style.left = currentX + "px";
   cursor.style.top = currentY + "px";
@@ -417,17 +390,9 @@ function animateCursor(){
 
 animateCursor();
 
-/* CURSOR HOVER EFFECT */
 document.querySelectorAll("button,a,.card").forEach(el=>{
-
-  el.addEventListener("mouseenter", ()=>{
-    cursor.classList.add("active");
-  });
-
-  el.addEventListener("mouseleave", ()=>{
-    cursor.classList.remove("active");
-  });
-
+  el.addEventListener("mouseenter", ()=>cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=>cursor.classList.remove("active"));
 });
 
 </script>
