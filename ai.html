@@ -1,0 +1,392 @@
+# ai.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERROR AI</title>
+
+<link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
+
+<!-- BETTER FONT SUPPORT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Orbitron", sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  overflow:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
+  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
+  z-index:0;
+}
+
+main{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:18px 24px;
+
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-area img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+
+  box-shadow:
+  0 0 18px rgba(255,255,255,.15),
+  0 0 40px rgba(255,255,255,.06);
+}
+
+.logo-area h1{
+  font-size:1.2rem;
+  letter-spacing:2px;
+}
+
+.topbar a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.75;
+  transition:.25s;
+}
+
+.topbar a:hover{
+  opacity:1;
+}
+
+.chat-container{
+  flex:1;
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+
+  display:flex;
+  flex-direction:column;
+
+  padding:24px 16px;
+}
+
+.chat-box{
+  flex:1;
+  overflow-y:auto;
+
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+
+  padding-right:6px;
+}
+
+.message{
+  max-width:78%;
+  padding:16px 18px;
+  border-radius:24px;
+  line-height:1.5;
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,.1);
+
+  box-shadow:
+  0 0 20px rgba(255,255,255,.06),
+  inset 0 0 10px rgba(255,255,255,.02);
+
+  animation:fadeIn .25s ease;
+}
+
+.user{
+  align-self:flex-end;
+
+  background:rgba(255,255,255,.12);
+}
+
+.ai{
+  align-self:flex-start;
+
+  background:rgba(255,255,255,.06);
+}
+
+.input-area{
+  margin-top:18px;
+
+  display:flex;
+  gap:12px;
+}
+
+.input-area input{
+  flex:1;
+
+  padding:16px 18px;
+
+  border:none;
+  outline:none;
+
+  color:white;
+
+  border-radius:22px;
+
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+  0 0 16px rgba(255,255,255,.05);
+}
+
+.input-area button{
+  border:none;
+  color:white;
+
+  padding:16px 24px;
+
+  border-radius:22px;
+  cursor:pointer;
+
+  transition:.25s;
+
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+  0 0 18px rgba(255,255,255,.05);
+}
+
+.input-area button:hover{
+  transform:translateY(-2px);
+
+  background:rgba(255,255,255,.15);
+}
+
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+
+  background:rgba(255,255,255,.9);
+
+  box-shadow:
+  0 0 18px rgba(255,255,255,.75),
+  0 0 40px rgba(255,255,255,.28);
+
+  transform:translate(-50%,-50%);
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0px);
+  }
+}
+
+@media(max-width:700px){
+
+  .message{
+    max-width:92%;
+  }
+
+  .logo-area h1{
+    font-size:1rem;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+
+<main>
+
+  <div class="topbar">
+
+    <div class="logo-area">
+      <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
+      <h1>ERROR AI</h1>
+    </div>
+
+    <a href="index.html">Return Home</a>
+
+  </div>
+
+  <div class="chat-container">
+
+    <div class="chat-box" id="chatBox">
+
+      <div class="message ai">
+        ERROR AI online. Ask anything.
+      </div>
+
+    </div>
+
+    <div class="input-area">
+
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Ask ERROR AI..."
+      >
+
+      <button id="sendBtn">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+
+const chatBox = document.getElementById("chatBox");
+const userInput = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+
+function addMessage(text, type){
+
+  const div = document.createElement("div");
+
+  div.className = `message ${type}`;
+
+  div.textContent = text;
+
+  chatBox.appendChild(div);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendMessage(){
+
+  const message = userInput.value.trim();
+
+  if(!message) return;
+
+  addMessage(message, "user");
+
+  userInput.value = "";
+
+  addMessage("ERROR AI is thinking...", "ai");
+
+  const thinkingMessage = chatBox.lastElementChild;
+
+  try{
+
+    const response = await fetch("/api/ai", {
+      method:"POST",
+
+      headers:{
+        "Content-Type":"application/json"
+      },
+
+      body:JSON.stringify({
+        message
+      })
+    });
+
+    const data = await response.json();
+
+    thinkingMessage.textContent = data.reply || "No response.";
+
+  }
+
+  catch(error){
+
+    thinkingMessage.textContent = "ERROR AI connection failure.";
+
+  }
+}
+
+sendBtn.addEventListener("click", sendMessage);
+
+userInput.addEventListener("keypress", e=>{
+
+  if(e.key === "Enter"){
+    sendMessage();
+  }
+
+});
+
+/* OPTIMIZED CURSOR */
+const cursor = document.querySelector(".cursor");
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+let currentX = mouseX;
+let currentY = mouseY;
+
+document.addEventListener("mousemove", e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateCursor(){
+
+  currentX += (mouseX - currentX) * 0.18;
+  currentY += (mouseY - currentY) * 0.18;
+
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
+
+  requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+</script>
+
+</body>
+</html>
