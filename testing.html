@@ -1,3 +1,10 @@
+# FULL UPDATED ERROR OS FILES
+
+---
+
+# index.html
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,18 +14,16 @@
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
-<!-- FONT FIX -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Exo 2", sans-serif;
+  font-family:"Orbitron", sans-serif;
 }
 
 html{
@@ -32,7 +37,6 @@ body{
   cursor:none;
 }
 
-/* STATIC BACKGROUND */
 body::before{
   content:"";
   position:fixed;
@@ -43,51 +47,70 @@ body::before{
   z-index:0;
 }
 
-/* TOP BAR */
-.topbar{
+/* ERROR OS NAVBAR */
+.os-navbar{
   position:fixed;
-  top:18px;
+  top:15px;
   left:50%;
   transform:translateX(-50%);
-  z-index:50;
+  z-index:9999;
 
-  padding:12px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  width:92%;
+  max-width:1100px;
+
+  padding:12px 20px;
   border-radius:999px;
 
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(22px);
-  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,.12);
 
   box-shadow:
   0 0 20px rgba(255,255,255,.08),
   inset 0 0 10px rgba(255,255,255,.03);
+}
 
+.os-title{
+  font-size:.95rem;
+  letter-spacing:2px;
+}
+
+.os-center{
   display:flex;
   gap:18px;
   align-items:center;
 }
 
-.topbar a{
+.os-center a{
   color:#fff;
   text-decoration:none;
-  font-size:.95rem;
-  opacity:.78;
+  opacity:.72;
   transition:.25s;
+  font-size:.85rem;
 }
 
-.topbar a:hover{
+.os-center a:hover,
+.os-center a.active{
   opacity:1;
   text-shadow:0 0 12px rgba(255,255,255,.45);
 }
 
-/* MAIN */
+.os-status{
+  font-size:.75rem;
+  opacity:.65;
+}
+
 main{
   position:relative;
   z-index:2;
-  padding:120px 16px 50px;
+  padding:140px 16px 50px;
 }
 
-/* HERO */
 .hero{
   text-align:center;
   max-width:900px;
@@ -98,6 +121,7 @@ main{
   height:180px;
   width:auto;
   border-radius:50%;
+
   box-shadow:
   0 0 28px rgba(255,255,255,.14),
   0 0 70px rgba(255,255,255,.05);
@@ -114,7 +138,6 @@ main{
   font-size:1rem;
 }
 
-/* BUTTONS */
 .btn-row{
   margin-top:28px;
   display:flex;
@@ -128,7 +151,7 @@ button{
   color:white;
   padding:12px 18px;
   border-radius:18px;
-  cursor:pointer;
+  cursor:none;
   transition:.25s;
 
   background:rgba(255,255,255,.08);
@@ -144,7 +167,6 @@ button:hover{
   box-shadow:0 0 24px rgba(255,255,255,.12);
 }
 
-/* SECTIONS */
 .section{
   margin-top:70px;
 }
@@ -155,7 +177,6 @@ button:hover{
   margin-bottom:25px;
 }
 
-/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -164,7 +185,6 @@ button:hover{
   margin:auto;
 }
 
-/* CARD */
 .card{
   padding:28px;
   border-radius:28px;
@@ -196,7 +216,6 @@ button:hover{
   line-height:1.45;
 }
 
-/* FOOTER */
 footer{
   margin-top:70px;
   text-align:center;
@@ -204,14 +223,14 @@ footer{
   font-size:.82rem;
 }
 
-/* OPTIMIZED CURSOR */
+/* CURSOR */
 .cursor{
   position:fixed;
   width:18px;
   height:18px;
   border-radius:50%;
   pointer-events:none;
-  z-index:9999;
+  z-index:99999;
 
   background:rgba(255,255,255,.9);
 
@@ -220,19 +239,16 @@ footer{
   0 0 40px rgba(255,255,255,.28);
 
   transform:translate(-50%,-50%);
+
   transition:
-  transform .08s linear,
   width .2s ease,
   height .2s ease,
   opacity .2s ease;
 }
 
-/* HOVER EFFECT */
 .cursor.active{
   width:28px;
   height:28px;
-
-  background:rgba(255,255,255,.95);
 
   box-shadow:
   0 0 24px rgba(255,255,255,.85),
@@ -245,55 +261,55 @@ footer{
     font-size:2.2rem;
   }
 
-  .topbar{
-    gap:10px;
-    padding:10px 14px;
+  .os-navbar{
     flex-wrap:wrap;
+    gap:10px;
     justify-content:center;
   }
 
+  .os-center{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- CUSTOM CURSOR -->
-<div class="cursor"></div>
+<div class="os-navbar">
 
-<!-- TOP BAR -->
-<div class="topbar">
+  <div class="os-title">ERROR OS</div>
 
-  <a href="ai.html" target="_blank">
-    Ask ERROR
-  </a>
+  <div class="os-center">
+    <a href="index.html" class="active">Home</a>
+    <a href="ai.html">AI</a>
+    <a href="origin.html">Origin</a>
+    <a href="errormc.html">MC</a>
+    <a href="help.html">Help</a>
+  </div>
 
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBXrL3Z6dZDh78McRsDKgDXkot30GT3YqbpFdmCn1U5AMmjQ/viewform?usp=header" target="_blank">
-    Share Ideas
-  </a>
-
-  <a href="help.html" target="_blank">
-    Help
-  </a>
+  <div class="os-status">ONLINE</div>
 
 </div>
 
+<div class="cursor"></div>
+
 <main>
 
-<!-- HERO -->
-<section class="hero" id="home">
+<section class="hero">
 
   <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
 
   <h1>ERROR Corporation</h1>
 
   <p>
-    Welcome to the official ERROR Corporation website. Explore ERROR MC, discover updates, and connect with the community.
+    Welcome to the official ERROR Corporation website. Explore the unified ERROR OS system.
   </p>
 
   <div class="btn-row">
 
-    <button onclick="window.open('https://error-corporation-1.github.io/ERROR.MC/index.html','_blank')">
+    <button onclick="window.location.href='https://error-lake.vercel.app/errormc.html'">
       ERROR MC
     </button>
 
@@ -301,7 +317,6 @@ footer{
 
 </section>
 
-<!-- ERROR HUB -->
 <section class="section">
 
   <div class="section-title">ERROR Hub</div>
@@ -309,79 +324,31 @@ footer{
   <div class="grid">
 
     <div class="card">
-
       <h3>ERROR MC</h3>
-
-      <p>
-        Our Minecraft Bedrock server community. Join, play, and explore updates.
-      </p>
-
+      <p>Join the Minecraft Bedrock survival server inside the ERROR ecosystem.</p>
     </div>
 
     <div class="card">
-
       <h3>ERROR Origin</h3>
-
-      <p>
-        The true history of ERROR Corporation. Where it all began.
-      </p>
+      <p>The complete history and evolution of ERROR Corporation.</p>
 
       <div class="btn-row">
-
-        <button onclick="window.open('https://error-lake.vercel.app/origin.html','_blank')">
+        <button onclick="window.location.href='origin.html'">
           Open Origin
         </button>
-
       </div>
 
     </div>
 
     <div class="card">
-
-      <h3>Updates</h3>
-
-      <p>
-        New features, projects, and improvements will be announced here over time.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- MERCH -->
-<section class="section">
-
-  <div class="section-title">Merch</div>
-
-  <div class="grid">
-
-    <div class="card">
-
-      <h3>Official Hoodie</h3>
-
-      <p>
-        Official ERROR Corporation merchandise designed for the community.
-      </p>
+      <h3>ERROR AI</h3>
+      <p>Talk with the official ERROR AI assistant powered by OpenRouter.</p>
 
       <div class="btn-row">
-
-        <button onclick="window.open('https://www.customink.com/designs/ERROR%20Official%20Hoodie/bbc0-00d2-3tuy/share?pc=EMAIL-40778&utm_campaign=shared%20design&utm_source=share%20link&utm_medium=shared%20design&utm_content=shared%20desktop','_blank')">
-          View Hoodie
+        <button onclick="window.location.href='ai.html'">
+          Launch AI
         </button>
-
       </div>
-
-    </div>
-
-    <div class="card">
-
-      <h3>New Releases</h3>
-
-      <p>
-        Future merch drops and designs will appear here.
-      </p>
 
     </div>
 
@@ -397,25 +364,370 @@ footer{
 
 <script>
 
-/* CLICK SOUND */
-function clickSound(){
+const cursor = document.querySelector(".cursor");
 
-  const audio = new Audio(
-    "data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA"
-  );
+let mouseX = window.innerWidth/2;
+let mouseY = window.innerHeight/2;
 
-  audio.volume = 0.18;
+let currentX = mouseX;
+let currentY = mouseY;
 
-  audio.play();
+document.addEventListener("mousemove", e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateCursor(){
+
+  currentX += (mouseX-currentX)*0.18;
+  currentY += (mouseY-currentY)*0.18;
+
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
+
+  requestAnimationFrame(animateCursor);
 }
 
-document.querySelectorAll("button,a").forEach(el=>{
+animateCursor();
 
-  el.addEventListener("click", clickSound);
+document.querySelectorAll("button,a,.card").forEach(el=>{
+  el.addEventListener("mouseenter", ()=>cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=>cursor.classList.remove("active"));
+});
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+# ai.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERROR AI</title>
+
+<link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Orbitron", sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  overflow:hidden;
+  cursor:none;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
+  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
+  z-index:0;
+}
+
+.os-navbar{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:9999;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  width:92%;
+  max-width:1100px;
+
+  padding:12px 20px;
+  border-radius:999px;
+
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.os-title{
+  letter-spacing:2px;
+}
+
+.os-center{
+  display:flex;
+  gap:18px;
+}
+
+.os-center a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.72;
+  transition:.25s;
+  font-size:.85rem;
+}
+
+.os-center a:hover,
+.os-center a.active{
+  opacity:1;
+}
+
+.os-status{
+  font-size:.75rem;
+  opacity:.65;
+}
+
+main{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding-top:90px;
+}
+
+.chat-container{
+  flex:1;
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+
+  display:flex;
+  flex-direction:column;
+
+  padding:24px 16px;
+}
+
+.chat-box{
+  flex:1;
+  overflow-y:auto;
+
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.message{
+  max-width:78%;
+  padding:16px 18px;
+  border-radius:24px;
+  line-height:1.5;
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,.1);
+
+  box-shadow:
+  0 0 20px rgba(255,255,255,.06),
+  inset 0 0 10px rgba(255,255,255,.02);
+}
+
+.user{
+  align-self:flex-end;
+  background:rgba(255,255,255,.12);
+}
+
+.ai{
+  align-self:flex-start;
+  background:rgba(255,255,255,.06);
+}
+
+.input-area{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+}
+
+.input-area input{
+  flex:1;
+  padding:16px 18px;
+  border:none;
+  outline:none;
+  color:white;
+  border-radius:22px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.input-area button{
+  border:none;
+  color:white;
+  padding:16px 24px;
+  border-radius:22px;
+  cursor:none;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:99999;
+
+  background:rgba(255,255,255,.9);
+
+  box-shadow:
+  0 0 18px rgba(255,255,255,.75),
+  0 0 40px rgba(255,255,255,.28);
+
+  transform:translate(-50%,-50%);
+
+  transition:
+  width .2s ease,
+  height .2s ease;
+}
+
+.cursor.active{
+  width:28px;
+  height:28px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="os-navbar">
+
+  <div class="os-title">ERROR AI</div>
+
+  <div class="os-center">
+    <a href="index.html">Home</a>
+    <a href="ai.html" class="active">AI</a>
+    <a href="origin.html">Origin</a>
+    <a href="errormc.html">MC</a>
+    <a href="help.html">Help</a>
+  </div>
+
+  <div class="os-status">ONLINE</div>
+
+</div>
+
+<div class="cursor"></div>
+
+<main>
+
+  <div class="chat-container">
+
+    <div class="chat-box" id="chatBox">
+
+      <div class="message ai">
+        ERROR AI online. Ask anything.
+      </div>
+
+    </div>
+
+    <div class="input-area">
+
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Ask ERROR AI..."
+      >
+
+      <button id="sendBtn">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+
+const chatBox = document.getElementById("chatBox");
+const userInput = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+
+function addMessage(text, type){
+
+  const div = document.createElement("div");
+
+  div.className = `message ${type}`;
+
+  div.textContent = text;
+
+  chatBox.appendChild(div);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendMessage(){
+
+  const message = userInput.value.trim();
+
+  if(!message) return;
+
+  addMessage(message, "user");
+
+  userInput.value = "";
+
+  const thinkingMessage = document.createElement("div");
+
+  thinkingMessage.className = "message ai";
+  thinkingMessage.textContent = "ERROR AI is thinking...";
+
+  chatBox.appendChild(thinkingMessage);
+
+  try{
+
+    const response = await fetch("/api/ai", {
+      method:"POST",
+
+      headers:{
+        "Content-Type":"application/json"
+      },
+
+      body:JSON.stringify({
+        message
+      })
+    });
+
+    const data = await response.json();
+
+    thinkingMessage.textContent = data.reply || "No response.";
+
+  }
+
+  catch(error){
+
+    thinkingMessage.textContent = "ERROR AI connection failure.";
+
+  }
+}
+
+sendBtn.addEventListener("click", sendMessage);
+
+userInput.addEventListener("keypress", e=>{
+
+  if(e.key === "Enter"){
+    sendMessage();
+  }
 
 });
 
-/* OPTIMIZED FUTURISTIC CURSOR */
 const cursor = document.querySelector(".cursor");
 
 let mouseX = window.innerWidth / 2;
@@ -425,10 +737,8 @@ let currentX = mouseX;
 let currentY = mouseY;
 
 document.addEventListener("mousemove", e=>{
-
   mouseX = e.clientX;
   mouseY = e.clientY;
-
 });
 
 function animateCursor(){
@@ -444,24 +754,858 @@ function animateCursor(){
 
 animateCursor();
 
-/* CURSOR HOVER EFFECT */
-document.querySelectorAll("button,a,.card").forEach(el=>{
-
-  el.addEventListener("mouseenter", ()=>{
-
-    cursor.classList.add("active");
-
-  });
-
-  el.addEventListener("mouseleave", ()=>{
-
-    cursor.classList.remove("active");
-
-  });
-
+document.querySelectorAll("button,a,input").forEach(el=>{
+  el.addEventListener("mouseenter", ()=>cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=>cursor.classList.remove("active"));
 });
 
 </script>
 
 </body>
 </html>
+```
+
+---
+
+# origin.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERROR Origin</title>
+
+<link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Orbitron", sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.06), transparent 55%),
+    linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.97));
+  z-index:0;
+}
+
+.os-navbar{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:9999;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  width:92%;
+  max-width:1100px;
+
+  padding:12px 20px;
+  border-radius:999px;
+
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.os-center{
+  display:flex;
+  gap:18px;
+}
+
+.os-center a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.72;
+}
+
+.os-center a.active,
+.os-center a:hover{
+  opacity:1;
+}
+
+main{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  margin:auto;
+  padding:140px 20px 60px;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.header h1{
+  font-size:3rem;
+  letter-spacing:2px;
+}
+
+.header p{
+  margin-top:10px;
+  opacity:.6;
+}
+
+.section{
+  margin-bottom:50px;
+  padding:24px;
+  border-radius:20px;
+
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(20px);
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,.06);
+}
+
+.section h2{
+  margin-bottom:10px;
+  font-size:1.4rem;
+}
+
+.section p{
+  opacity:.75;
+  line-height:1.6;
+}
+
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.tag{
+  display:inline-block;
+  padding:4px 10px;
+  font-size:.75rem;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:999px;
+  opacity:.7;
+  margin-bottom:10px;
+}
+
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:99999;
+
+  background:rgba(255,255,255,.9);
+
+  box-shadow:
+  0 0 18px rgba(255,255,255,.75),
+  0 0 40px rgba(255,255,255,.28);
+
+  transform:translate(-50%,-50%);
+
+  transition:
+  width .2s ease,
+  height .2s ease;
+}
+
+.cursor.active{
+  width:28px;
+  height:28px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="os-navbar">
+
+  <div>ERROR ORIGIN</div>
+
+  <div class="os-center">
+    <a href="index.html">Home</a>
+    <a href="ai.html">AI</a>
+    <a href="origin.html" class="active">Origin</a>
+    <a href="errormc.html">MC</a>
+    <a href="help.html">Help</a>
+  </div>
+
+  <div>ONLINE</div>
+
+</div>
+
+<div class="cursor"></div>
+
+<main>
+
+<div class="header">
+  <h1>ERROR ORIGIN</h1>
+  <p>The history, evolution, and return of ERROR Corporation</p>
+</div>
+
+<div class="timeline">
+
+  <div class="section">
+    <div class="tag">June 2024</div>
+    <h2>The Beginning</h2>
+    <p>
+      ERROR Corporation was first created in June 2024 as a small experimental web project.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="tag">2026</div>
+    <h2>The Return</h2>
+    <p>
+      ERROR is back.
+    </p>
+  </div>
+
+</div>
+
+</main>
+
+<script>
+const cursor = document.querySelector(".cursor");
+
+let mouseX = window.innerWidth/2;
+let mouseY = window.innerHeight/2;
+
+let currentX = mouseX;
+let currentY = mouseY;
+
+document.addEventListener("mousemove", e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateCursor(){
+
+  currentX += (mouseX-currentX)*0.18;
+  currentY += (mouseY-currentY)*0.18;
+
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
+
+  requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+document.querySelectorAll("a,.section").forEach(el=>{
+  el.addEventListener("mouseenter", ()=>cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=>cursor.classList.remove("active"));
+});
+</script>
+
+</body>
+</html>
+```
+
+---
+
+# errormc.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERROR MC</title>
+
+<link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Orbitron", sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
+  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
+  z-index:0;
+}
+
+.os-navbar{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:9999;
+  width:92%;
+  max-width:1100px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.os-center{
+  display:flex;
+  gap:18px;
+}
+
+.os-center a{
+  color:white;
+  text-decoration:none;
+  opacity:.7;
+}
+
+.os-center a.active,
+.os-center a:hover{
+  opacity:1;
+}
+
+main{
+  position:relative;
+  z-index:2;
+  padding:140px 20px 60px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.hero h1{
+  font-size:3rem;
+  margin-bottom:10px;
+}
+
+.hero p{
+  opacity:.7;
+  max-width:700px;
+  margin:auto;
+}
+
+.panel{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(25px);
+  border-radius:28px;
+  padding:32px;
+  max-width:800px;
+  margin:20px auto;
+  box-shadow:
+  0 0 24px rgba(255,255,255,.08),
+  inset 0 0 14px rgba(255,255,255,.02);
+}
+
+.panel h2{
+  margin-bottom:12px;
+}
+
+.panel p{
+  opacity:.75;
+  line-height:1.6;
+}
+
+.button-row{
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+button{
+  border:none;
+  color:white;
+  padding:12px 18px;
+  border-radius:18px;
+  cursor:none;
+  transition:.25s;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+button:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.14);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-top:25px;
+}
+
+.card{
+  padding:24px;
+  border-radius:24px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(20px);
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card p{
+  opacity:.7;
+  line-height:1.5;
+}
+
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:99999;
+  background:rgba(255,255,255,.9);
+  box-shadow:
+  0 0 18px rgba(255,255,255,.75),
+  0 0 40px rgba(255,255,255,.28);
+  transform:translate(-50%,-50%);
+  transition:width .2s ease,height .2s ease;
+}
+
+.cursor.active{
+  width:28px;
+  height:28px;
+}
+
+footer{
+  text-align:center;
+  margin-top:50px;
+  opacity:.45;
+}
+</style>
+</head>
+
+<body>
+
+<div class="os-navbar">
+  <div>ERROR MC</div>
+
+  <div class="os-center">
+    <a href="index.html">Home</a>
+    <a href="ai.html">AI</a>
+    <a href="origin.html">Origin</a>
+    <a href="errormc.html" class="active">MC</a>
+    <a href="help.html">Help</a>
+  </div>
+
+  <div>ONLINE</div>
+</div>
+
+<div class="cursor"></div>
+
+<main>
+
+<div class="hero">
+  <h1>ERROR MC</h1>
+
+  <p>
+    Official Minecraft Bedrock server inside the ERROR ecosystem.
+  </p>
+</div>
+
+<div class="panel">
+
+  <h2>Server Information</h2>
+
+  <p>IP: us.freegamehost.xyz</p>
+  <p>Port: 5063</p>
+  <p>Status: <span id="status">Checking...</span></p>
+
+  <div class="button-row">
+
+    <button onclick="copyIP()">
+      Copy IP
+    </button>
+
+    <button onclick="window.open('https://discord.gg/rzAHkEmq','_blank')">
+      Join Discord
+    </button>
+
+  </div>
+
+</div>
+
+<div class="panel">
+
+  <h2>Server Features</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🌍 Survival</h3>
+      <p>Build, survive, and explore with other players.</p>
+    </div>
+
+    <div class="card">
+      <h3>⚔️ PvP</h3>
+      <p>Battle other players and prove your skill.</p>
+    </div>
+
+    <div class="card">
+      <h3>💰 Economy</h3>
+      <p>Trade, earn resources, and grow your wealth.</p>
+    </div>
+
+    <div class="card">
+      <h3>🎉 Events</h3>
+      <p>Participate in special server activities and challenges.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+© 2026 ERROR Corporation
+</footer>
+
+</main>
+
+<script>
+
+const serverIP = "us.freegamehost.xyz:5063";
+
+function copyIP(){
+  navigator.clipboard.writeText(serverIP);
+  alert("Server IP copied: " + serverIP);
+}
+
+fetch('https://api.mcsrvstat.us/bedrock/2/us.freegamehost.xyz:5063')
+.then(response => response.json())
+.then(data => {
+  document.getElementById("status").innerText =
+  data.online ? `Online ✅ (${data.players.online || 0} players)` : "Offline ❌";
+})
+.catch(() => {
+  document.getElementById("status").innerText = "Unknown ❓";
+});
+
+const cursor = document.querySelector(".cursor");
+
+let mouseX = window.innerWidth/2;
+let mouseY = window.innerHeight/2;
+
+let currentX = mouseX;
+let currentY = mouseY;
+
+document.addEventListener("mousemove", e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateCursor(){
+  currentX += (mouseX-currentX)*0.18;
+  currentY += (mouseY-currentY)*0.18;
+
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
+
+  requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+document.querySelectorAll("button,a,.card").forEach(el=>{
+  el.addEventListener("mouseenter", ()=>cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=>cursor.classList.remove("active"));
+});
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+# help.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERROR Help</title>
+
+<link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Orbitron", sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
+  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
+  z-index:0;
+}
+
+.os-navbar{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:9999;
+  width:92%;
+  max-width:1100px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.os-center{
+  display:flex;
+  gap:18px;
+}
+
+.os-center a{
+  color:white;
+  text-decoration:none;
+  opacity:.7;
+}
+
+.os-center a.active,
+.os-center a:hover{
+  opacity:1;
+}
+
+main{
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  margin:auto;
+  padding:140px 20px 60px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.hero h1{
+  font-size:3rem;
+  margin-bottom:10px;
+}
+
+.hero p{
+  opacity:.7;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.card{
+  padding:28px;
+  border-radius:28px;
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(25px);
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:
+  0 0 24px rgba(255,255,255,.08),
+  inset 0 0 14px rgba(255,255,255,.02);
+}
+
+.card h2{
+  margin-bottom:12px;
+}
+
+.card p{
+  opacity:.72;
+  line-height:1.6;
+}
+
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:99999;
+  background:rgba(255,255,255,.9);
+  box-shadow:
+  0 0 18px rgba(255,255,255,.75),
+  0 0 40px rgba(255,255,255,.28);
+  transform:translate(-50%,-50%);
+}
+
+.cursor.active{
+  width:28px;
+  height:28px;
+}
+
+footer{
+  text-align:center;
+  margin-top:50px;
+  opacity:.45;
+}
+</style>
+</head>
+
+<body>
+
+<div class="os-navbar">
+
+  <div>ERROR HELP</div>
+
+  <div class="os-center">
+    <a href="index.html">Home</a>
+    <a href="ai.html">AI</a>
+    <a href="origin.html">Origin</a>
+    <a href="errormc.html">MC</a>
+    <a href="help.html" class="active">Help</a>
+  </div>
+
+  <div>ONLINE</div>
+
+</div>
+
+<div class="cursor"></div>
+
+<main>
+
+<div class="hero">
+  <h1>ERROR HELP</h1>
+  <p>Support center for the ERROR OS system.</p>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <h2>ERROR AI</h2>
+    <p>
+      Use ERROR AI to ask questions and interact with the system assistant.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>ERROR MC</h2>
+    <p>
+      Join the Minecraft Bedrock server through the MC page.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>System Status</h2>
+    <p>
+      If pages fail to load, refresh the site or verify Vercel deployment status.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+© 2026 ERROR Corporation
+</footer>
+
+</main>
+
+<script>
+
+const cursor = document.querySelector(".cursor");
+
+let mouseX = window.innerWidth/2;
+let mouseY = window.innerHeight/2;
+
+let currentX = mouseX;
+let currentY = mouseY;
+
+document.addEventListener("mousemove", e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateCursor(){
+  currentX += (mouseX-currentX)*0.18;
+  currentY += (mouseY-currentY)*0.18;
+
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
+
+  requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+document.querySelectorAll("a,.card").forEach(el=>{
+  el.addEventListener("mouseenter", ()=>cursor.classList.add("active"));
+  el.addEventListener("mouseleave", ()=>cursor.classList.remove("active"));
+});
+
+</script>
+
+</body>
+</html>
+```
