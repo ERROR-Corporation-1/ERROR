@@ -189,9 +189,7 @@ main{
     max-width:92%;
   }
 
-  .logo-area h1{
-    font-size:1rem;
-  }
+}
 
 .topbar{
   position:fixed;
@@ -247,17 +245,6 @@ main{
 <div class="cursor"></div>
 
 <main>
-
-  <div class="topbar">
-
-    <div class="logo-area">
-      <img src="assets/ERROR Logo 1.png" alt="ERROR Logo">
-      <h1>ERROR AI</h1>
-    </div>
-
-    <a href="index.html">Return Home</a>
-
-  </div>
 
   <div class="chat-container">
 
@@ -383,6 +370,14 @@ function animateCursor(){
 }
 
 animateCursor();
+
+</script>
+
+<script type="module">
+
+import { loadToolbar } from "./js/toolbar.js";
+
+loadToolbar();
 
 </script>
 
