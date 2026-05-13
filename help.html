@@ -1,1 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERROR Help</title>
 
+<link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.06), transparent 55%),
+    linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.97));
+  z-index:0;
+}
+
+/* MAIN */
+main{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  margin:auto;
+  padding:120px 20px 60px;
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.header h1{
+  font-size:3rem;
+  letter-spacing:2px;
+}
+
+.header p{
+  margin-top:10px;
+  opacity:.6;
+}
+
+/* CARDS */
+.section{
+  margin-bottom:20px;
+  padding:24px;
+  border-radius:20px;
+
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(20px);
+
+  box-shadow:0 0 25px rgba(255,255,255,.06);
+}
+
+.section h2{
+  margin-bottom:10px;
+  font-size:1.3rem;
+}
+
+.section p{
+  opacity:.75;
+  line-height:1.6;
+}
+
+/* TOPBAR (shared system) */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:14px 22px;
+
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.1);
+
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+.topbar a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.75;
+  margin-left:12px;
+  transition:.2s;
+}
+
+.topbar a:hover{
+  opacity:1;
+}
+
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-area img{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+}
+
+.logo-area h1{
+  font-size:1rem;
+  letter-spacing:2px;
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<div class="header">
+  <h1>ERROR HELP</h1>
+  <p>Support, guides, and information about ERROR systems</p>
+</div>
+
+<div class="section">
+  <h2>What is ERROR?</h2>
+  <p>
+    ERROR Corporation is a futuristic web system built around experimental projects,
+    AI systems, and community-driven platforms like ERROR MC and ERROR AI.
+  </p>
+</div>
+
+<div class="section">
+  <h2>ERROR AI</h2>
+  <p>
+    ERROR AI is the built-in assistant that responds to user questions using a backend API system.
+  </p>
+</div>
+
+<div class="section">
+  <h2>ERROR MC</h2>
+  <p>
+    ERROR MC is a Minecraft Bedrock survival + PvP server connected to the ERROR ecosystem.
+  </p>
+</div>
+
+<div class="section">
+  <h2>Need More Help?</h2>
+  <p>
+    If something is broken or not working, refresh the page or check if the server is online.
+  </p>
+</div>
+
+</main>
+
+<!-- TOOLBAR SYSTEM -->
+<script type="module">
+import { loadToolbar } from "./js/toolbar.js";
+loadToolbar("home");
+</script>
+
+</body>
+</html>
