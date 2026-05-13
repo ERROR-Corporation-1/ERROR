@@ -20,7 +20,7 @@ export function loadToolbar(type){
         <img src="assets/ERROR Logo 1.png">
         <h1>ERROR AI</h1>
       </div>
-      <a href="index.html">Home</a>
+      <a href="index.html">Return Home</a>
     `;
   }
 
@@ -30,7 +30,7 @@ export function loadToolbar(type){
         <img src="assets/ERROR Logo 1.png">
         <h1>ERROR MC</h1>
       </div>
-      <a href="index.html">Home</a>
+      <a href="index.html">Return Home</a>
     `;
   }
 
@@ -40,7 +40,7 @@ export function loadToolbar(type){
         <img src="assets/ERROR Logo 1.png">
         <h1>ERROR ORIGIN</h1>
       </div>
-      <a href="index.html">Home</a>
+      <a href="index.html">Return Home</a>
     `;
   }
 
@@ -50,7 +50,7 @@ export function loadToolbar(type){
         <img src="assets/ERROR Logo 1.png">
         <h1>ERROR HELP</h1>
       </div>
-      <a href="index.html">Home</a>
+      <a href="index.html">Return Home</a>
     `;
   }
 
