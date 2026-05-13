@@ -1,59 +1,21 @@
-export function loadToolbar(type){
+export function loadToolbar(){
 
   const bar = document.createElement("div");
+
   bar.className = "topbar";
 
-  let content = "";
+  bar.innerHTML = `
 
-  if(type === "home"){
-    content = `
-      <a href="ai.html">Ask ERROR</a>
-      <a href="errormc.html">ERROR MC</a>
-      <a href="origin.html">Origin</a>
-      <a href="help.html">Help</a>
-    `;
-  }
+    <a href="ai.html">Ask ERROR</a>
 
-  if(type === "ai"){
-    content = `
-      <div class="logo-area">
-        <img src="assets/ERROR Logo 1.png">
-        <h1>ERROR AI</h1>
-      </div>
-      <a href="index.html">Return Home</a>
-    `;
-  }
+    <a href="errormc.html">ERROR MC</a>
 
-  if(type === "mc"){
-    content = `
-      <div class="logo-area">
-        <img src="assets/ERROR Logo 1.png">
-        <h1>ERROR MC</h1>
-      </div>
-      <a href="index.html">Return Home</a>
-    `;
-  }
+    <a href="origin.html">Origin</a>
 
-  if(type === "origin"){
-    content = `
-      <div class="logo-area">
-        <img src="assets/ERROR Logo 1.png">
-        <h1>ERROR ORIGIN</h1>
-      </div>
-      <a href="index.html">Return Home</a>
-    `;
-  }
+    <a href="help.html">Help</a>
 
-  if(type === "help"){
-    content = `
-      <div class="logo-area">
-        <img src="assets/ERROR Logo 1.png">
-        <h1>ERROR HELP</h1>
-      </div>
-      <a href="index.html">Return Home</a>
-    `;
-  }
+  `;
 
-  bar.innerHTML = content;
   document.body.prepend(bar);
+
 }
