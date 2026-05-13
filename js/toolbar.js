@@ -44,6 +44,16 @@ export function loadToolbar(type){
     `;
   }
 
+  if(type === "help"){
+    content = `
+      <div class="logo-area">
+        <img src="assets/ERROR Logo 1.png">
+        <h1>ERROR HELP</h1>
+      </div>
+      <a href="index.html">Home</a>
+    `;
+  }
+
   bar.innerHTML = content;
   document.body.prepend(bar);
 }
