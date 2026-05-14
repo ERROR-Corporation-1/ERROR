@@ -1,14 +1,14 @@
 export function loadToolbar(){
 
-  const bar = document.createElement("div");
+  const toolbar = document.createElement("div");
 
-  bar.className = "topbar";
+  toolbar.className = "topbar";
 
-  bar.innerHTML = `
+  toolbar.innerHTML = `
+
+    <a href="index.html">Home</a>
 
     <a href="ai.html">Ask ERROR</a>
-
-    <a href="errormc.html">ERROR MC</a>
 
     <a href="origin.html">Origin</a>
 
@@ -16,6 +16,6 @@ export function loadToolbar(){
 
   `;
 
-  document.body.prepend(bar);
+  document.body.prepend(toolbar);
 
 }
