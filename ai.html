@@ -14,22 +14,36 @@
 <link rel="stylesheet" href="css/global.css">
 
 <style>
-/* (your CSS unchanged — I only added lock screen styles below) */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:#000;color:#fff;overflow:hidden;}
+html{
+  scroll-behavior:smooth;
+  cursor:none;
+}
 
+body{
+  background:#000;
+  color:#fff;
+  overflow:hidden;
+  cursor:none;
+}
+
+/* BACKGROUND */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-  radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
-  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
+    radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
+    linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
   z-index:0;
 }
 
+/* MAIN LAYOUT */
 main{
   position:relative;
   z-index:2;
@@ -39,6 +53,7 @@ main{
   flex-direction:column;
 }
 
+/* CHAT CONTAINER */
 .chat-container{
   flex:1;
   width:100%;
@@ -49,6 +64,7 @@ main{
   padding:110px 16px 24px;
 }
 
+/* CHAT BOX (IMPORTANT FIX: smooth scrolling) */
 .chat-box{
   flex:1;
   overflow-y:auto;
@@ -58,6 +74,7 @@ main{
   padding-right:6px;
 }
 
+/* MESSAGES */
 .message{
   max-width:78%;
   padding:16px 18px;
@@ -68,9 +85,17 @@ main{
   animation:fadeIn .25s ease;
 }
 
-.user{align-self:flex-end;background:rgba(255,255,255,.12);}
-.ai{align-self:flex-start;background:rgba(255,255,255,.06);}
+.user{
+  align-self:flex-end;
+  background:rgba(255,255,255,.12);
+}
 
+.ai{
+  align-self:flex-start;
+  background:rgba(255,255,255,.06);
+}
+
+/* INPUT AREA */
 .input-area{
   margin-top:18px;
   display:flex;
@@ -93,22 +118,24 @@ main{
   color:white;
   padding:16px 24px;
   border-radius:22px;
-  cursor:pointer;
+  cursor:none;
   background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.12);
 }
 
+/* CUSTOM CURSOR */
 .cursor{
   position:fixed;
   width:18px;
   height:18px;
   border-radius:50%;
   pointer-events:none;
-  z-index:9999;
+  z-index:2147483647;
   background:rgba(255,255,255,.9);
+  transform:translate(-50%,-50%);
 }
 
-/* 🔥 ERROR LOCK SCREEN */
+/* LOCK SCREEN */
 #errorLock {
   position:fixed;
   inset:0;
@@ -131,7 +158,13 @@ main{
 #errorLock button {
   margin-top:10px;
   padding:10px 16px;
-  cursor:pointer;
+  cursor:none;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(8px);}
+  to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
