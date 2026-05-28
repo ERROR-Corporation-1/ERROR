@@ -281,6 +281,24 @@ footer{
 
   <div class="grid">
 
+  <div class="card">
+    <h3>Contact</h3>
+
+    <p>Email: errorcorporation1510@gmail.com</p>
+    <div class="btn-row">
+  <button onclick="copyText(this, 'errorcorporation1510@gmail.com')">
+    Copy Email
+  </button>
+</div>
+  
+    <p style="margin-top:12px;">Phone: YOUR_NUMBER_HERE</p>
+    <div class="btn-row">
+  <button onclick="copyText(this, 'YOUR_NUMBER_HERE')">
+    Copy Phone
+  </button>
+</div>
+  </div>
+
     <div class="card">
       <h3>ERROR MC</h3>
       <p>Our Minecraft Bedrock server community. Join, play, and explore updates.</p>
@@ -343,7 +361,6 @@ footer{
 </main>
 
 <script>
-
 function clickSound(){
   const audio = new Audio("data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAA//////8AAP///wAA////AAD///8AAP///wAA");
   audio.volume = 0.18;
@@ -356,8 +373,8 @@ document.querySelectorAll("button,a").forEach(el=>{
 
 const cursor = document.querySelector(".cursor");
 
-let mouseX = window.innerWidth/2;
-let mouseY = window.innerHeight/2;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
 
 let currentX = mouseX;
 let currentY = mouseY;
@@ -368,8 +385,8 @@ document.addEventListener("mousemove", e=>{
 });
 
 function animateCursor(){
-  currentX += (mouseX-currentX)*0.18;
-  currentY += (mouseY-currentY)*0.18;
+  currentX += (mouseX - currentX) * 0.18;
+  currentY += (mouseY - currentY) * 0.18;
 
   cursor.style.left = currentX + "px";
   cursor.style.top = currentY + "px";
@@ -383,7 +400,21 @@ document.querySelectorAll("button,a,.card").forEach(el=>{
   el.addEventListener("mouseenter", ()=>cursor.classList.add("active"));
   el.addEventListener("mouseleave", ()=>cursor.classList.remove("active"));
 });
+</script>
 
+<script>
+function copyText(button, text){
+  navigator.clipboard.writeText(text).catch(err => {
+  console.warn("Clipboard failed:", err);
+});
+
+  const original = button.innerText;
+  button.innerText = "Copied ✓";
+
+  setTimeout(() => {
+    button.innerText = original;
+  }, 1200);
+}
 </script>
 
 <script type="module">
@@ -393,5 +424,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadToolbar();
 });
 </script>
+
 </body>
 </html>
