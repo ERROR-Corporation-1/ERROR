@@ -6,22 +6,17 @@
 <title>ERROR AI</title>
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:"Orbitron", sans-serif;
-}
+<link rel="stylesheet" href="css/global.css">
 
-html, body{
-  height:100%;
-  overflow:hidden;
-  background:#000;
-  color:#fff;
-}
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#000;color:#fff;overflow:hidden;}
 
 body::before{
   content:"";
@@ -30,23 +25,25 @@ body::before{
   background:
   radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
   linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
+  z-index:0;
 }
 
 main{
   position:relative;
   z-index:2;
+  width:100%;
   height:100vh;
   display:flex;
+  flex-direction:column;
 }
 
 .chat-container{
-  width:100%;
+  flex:1;
   max-width:1100px;
   margin:auto;
   display:flex;
   flex-direction:column;
-  height:100vh;
-  padding:110px 16px 20px;
+  padding:110px 16px 24px;
 }
 
 .chat-box{
@@ -54,83 +51,120 @@ main{
   overflow-y:auto;
   display:flex;
   flex-direction:column;
-  gap:14px;
-  padding-right:6px;
+  gap:18px;
 }
 
 .message{
-  max-width:80%;
-  padding:14px 16px;
-  border-radius:18px;
-  line-height:1.4;
+  max-width:78%;
+  padding:16px 18px;
+  border-radius:24px;
+  line-height:1.5;
+  backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(12px);
-  white-space:pre-wrap;
+  animation:fadeIn .25s ease;
 }
 
-.user{
-  align-self:flex-end;
-  background:rgba(255,255,255,.12);
-}
-
-.ai{
-  align-self:flex-start;
-  background:rgba(255,255,255,.06);
-}
+.user{align-self:flex-end;background:rgba(255,255,255,.12);}
+.ai{align-self:flex-start;background:rgba(255,255,255,.06);}
 
 .input-area{
+  margin-top:18px;
   display:flex;
-  gap:10px;
+  gap:12px;
+}
+
+.input-area input{
+  flex:1;
+  padding:16px;
+  border:none;
+  outline:none;
+  color:white;
+  border-radius:22px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.input-area button{
+  padding:16px 24px;
+  border-radius:22px;
+  cursor:pointer;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  background:rgba(255,255,255,.9);
+}
+
+/* LOCK SCREEN */
+#errorLock{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.96);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:10000;
+}
+
+#errorLock input{
+  padding:12px;
   margin-top:12px;
 }
 
-input{
-  flex:1;
-  padding:14px;
-  border-radius:14px;
-  border:none;
-  outline:none;
-  background:rgba(255,255,255,.08);
-  color:white;
-}
-
-button{
-  padding:14px 18px;
-  border-radius:14px;
-  border:none;
-  cursor:pointer;
-  background:rgba(255,255,255,.12);
-  color:white;
+#errorLock button{
+  margin-top:10px;
+  padding:10px 16px;
 }
 </style>
 </head>
 
 <body>
 
+<div class="cursor"></div>
+
+<!-- 🔐 LOCK SCREEN -->
+<div id="errorLock">
+  <h2>ERROR ACCESS REQUIRED</h2>
+  <input type="password" id="errorPass" placeholder="Enter Code">
+  <button onclick="checkErrorPass()">Unlock</button>
+</div>
+
 <main>
 
-<div class="chat-container">
+  <div class="chat-container">
 
-  <div class="chat-box" id="chatBox">
-    <div class="message ai">ERROR AI online.</div>
+    <div class="chat-box" id="chatBox">
+      <div class="message ai">ERROR AI online. Ask anything.</div>
+    </div>
+
+    <div class="input-area">
+      <input id="userInput" placeholder="Ask ERROR AI...">
+      <button id="sendBtn">Send</button>
+    </div>
+
   </div>
-
-  <div class="input-area">
-    <input id="userInput" placeholder="Ask ERROR AI...">
-    <button id="sendBtn">Send</button>
-  </div>
-
-</div>
 
 </main>
 
 <script>
+
+/* 🔥 STATE */
+let isUnlocked = false;
+let isOwner = false;
+let identity = "User";
+
 const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
-
-let unlocked = false;
-let errorMode = false;
+const lockScreen = document.getElementById("errorLock");
 
 function addMessage(text, type){
   const div = document.createElement("div");
@@ -140,84 +174,149 @@ function addMessage(text, type){
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function fakeCodeLines(){
-  let output = "";
-  for(let i=0;i<500;i++){
-    output += `ERROR_LINE_${i}_${Math.random().toString(16).slice(2)}\n`;
+/* 🔐 TRIGGER LOCK */
+function handleSpecial(message){
+  if(message.trim() === "This is ERROR"){
+    lockScreen.style.display = "flex";
+    return true;
   }
-  return output;
+  return false;
 }
 
-function unlockScreen(){
-  const pass = prompt("Enter ERROR Password:");
+/* 🔐 PASSWORD */
+function checkErrorPass(){
+
+  const pass = document.getElementById("errorPass").value;
+
   if(pass === "1510"){
-    unlocked = true;
-    addMessage("ERROR MODE UNLOCKED", "ai");
+
+    isUnlocked = true;
+    isOwner = true;
+
+    identity = Math.random() > 0.5 ? "ERROR" : "Kevin";
+
+    lockScreen.style.display = "none";
+
+    addMessage("ERROR MODE ACTIVATED", "ai");
+    addMessage("OWNER ACCESS GRANTED", "ai");
+
   } else {
-    addMessage("Wrong password.", "ai");
+    alert("ACCESS DENIED");
   }
 }
 
+/* 💻 DOMAIN EXPANSION */
+function generateFakeCode(){
+
+  addMessage("INITIALIZING DOMAIN EXPANSION...", "ai");
+
+  let output = "";
+
+  const lines = [
+    "let core = initializeSystem();",
+    "function entropy() { return Math.random(); }",
+    "ERROR.inject(protocol);",
+    "kernel.sync();",
+    "void.process.activate();",
+    "memory.shift();",
+    "network.bind(null);",
+    "system.override(true);"
+  ];
+
+  for(let i = 0; i < 500; i++){
+    output += lines[Math.floor(Math.random() * lines.length)] + "\n";
+  }
+
+  addMessage(output, "ai");
+}
+
+/* 🚀 SEND MESSAGE */
 async function sendMessage(){
 
-  const msg = userInput.value.trim();
-  if(!msg) return;
+  const message = userInput.value.trim();
+  if(!message) return;
 
-  addMessage(msg, "user");
   userInput.value = "";
 
-  /* COMMAND: PASSWORD MODE */
-  if(msg.toLowerCase() === "this is error"){
-    errorMode = true;
-    unlockScreen();
+  addMessage(message, "user");
+
+  /* 🔥 SPECIAL COMMAND */
+  if(message === "Domain Expansion"){
+    if(!isUnlocked){
+      addMessage("ACCESS DENIED", "ai");
+      return;
+    }
+
+    generateFakeCode();
     return;
   }
 
-  /* COMMAND: DOMAIN EXPANSION */
-  if(msg.toLowerCase() === "domain expansion"){
-    addMessage(fakeCodeLines(), "ai");
-    return;
-  }
+  /* 🔐 LOCK TRIGGER */
+  if(handleSpecial(message)) return;
 
-  const thinking = document.createElement("div");
-  thinking.className = "message ai";
-  thinking.textContent = "ERROR AI is thinking...";
-  chatBox.appendChild(thinking);
-  chatBox.scrollTop = chatBox.scrollHeight;
-
-  let systemPrefix = "";
-
-  if(errorMode && unlocked){
-    systemPrefix = "[ERROR OWNER MODE ACTIVE - Address user as ERROR/Kevin]";
-  }
+  addMessage("ERROR AI is thinking...", "ai");
+  const thinking = chatBox.lastElementChild;
 
   try{
-    const res = await fetch("/api/ai",{
+
+    const response = await fetch("/api/ai", {
       method:"POST",
       headers:{ "Content-Type":"application/json" },
-      body:JSON.stringify({
-        message: systemPrefix + " " + msg
-      })
+      body:JSON.stringify({ message })
     });
 
-    const data = await res.json();
-    thinking.textContent = data.reply || "No response";
+    const data = await response.json();
+
+    let reply = data.reply || "No response.";
+
+    if(isUnlocked){
+      reply = `[${identity}] ${reply}`;
+    }
+
+    thinking.textContent = reply;
 
   } catch(e){
     thinking.textContent = "ERROR AI connection failure.";
   }
 }
 
-sendBtn.onclick = sendMessage;
+sendBtn.addEventListener("click", sendMessage);
 
 userInput.addEventListener("keypress", e=>{
   if(e.key === "Enter") sendMessage();
 });
 
-/* FIXED SCROLL (NO ZOOM FEELING) */
-chatBox.addEventListener("wheel", (e)=>{
-  chatBox.scrollTop += e.deltaY;
+</script>
+
+<script>
+const cursor = document.querySelector(".cursor");
+
+let mouseX = window.innerWidth/2;
+let mouseY = window.innerHeight/2;
+let currentX = mouseX;
+let currentY = mouseY;
+
+document.addEventListener("mousemove", e=>{
+  mouseX = e.clientX;
+  mouseY = e.clientY;
 });
+
+function animate(){
+  currentX += (mouseX-currentX)*0.18;
+  currentY += (mouseY-currentY)*0.18;
+
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+<script type="module">
+import { loadToolbar } from "./js/toolbar.js";
+loadToolbar();
 </script>
 
 </body>
