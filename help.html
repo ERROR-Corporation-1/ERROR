@@ -5,16 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ERROR Help</title>
 
+<link rel="stylesheet" href="css/global.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:"Arial Rounded MT Bold", Arial, sans-serif;
-}
-
 body{
   background:#000;
   color:#fff;
@@ -80,51 +79,6 @@ main{
   line-height:1.6;
 }
 
-/* TOPBAR (shared system) */
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:14px 22px;
-
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.1);
-
-  position:sticky;
-  top:0;
-  z-index:999;
-}
-
-.topbar a{
-  color:#fff;
-  text-decoration:none;
-  opacity:.75;
-  margin-left:12px;
-  transition:.2s;
-}
-
-.topbar a:hover{
-  opacity:1;
-}
-
-.logo-area{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo-area img{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-}
-
-.logo-area h1{
-  font-size:1rem;
-  letter-spacing:2px;
-}
 </style>
 </head>
 
@@ -165,13 +119,11 @@ main{
     If something is broken or not working, refresh the page or check if the server is online.
   </p>
 </div>
-
 </main>
 
-<!-- TOOLBAR SYSTEM -->
 <script type="module">
-import { loadToolbar } from "./js/toolbar.js";
-loadToolbar("home");
+  import { loadToolbar } from "./js/toolbar.js";
+  document.addEventListener("DOMContentLoaded", loadToolbar);
 </script>
 
 </body>
