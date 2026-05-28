@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ERROR Origin</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
 <style>
@@ -12,7 +14,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Arial Rounded MT Bold", Arial, sans-serif;
+  font-family:"Orbitron", sans-serif;
 }
 
 body{
@@ -81,6 +83,15 @@ main{
   line-height:1.6;
 }
 
+.section{
+  transition:.25s;
+}
+
+.section:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 35px rgba(255,255,255,.12);
+}
+
 /* TIMELINE STYLE */
 .timeline{
   display:flex;
@@ -96,6 +107,30 @@ main{
   border-radius:999px;
   opacity:.7;
   margin-bottom:10px;
+}
+
+.back{
+  position:fixed;
+  top:20px;
+  left:20px;
+  z-index:10;
+
+  color:#fff;
+  text-decoration:none;
+
+  padding:10px 14px;
+  border-radius:12px;
+
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(18px);
+
+  transition:.2s;
+}
+
+.back:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.12);
 }
 </style>
 </head>
@@ -185,6 +220,14 @@ main{
 </div>
 
 </main>
+
+<script type="module">
+  import { loadToolbar } from "./js/toolbar.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadToolbar();
+  });
+</script>
 
 </body>
 </html>
