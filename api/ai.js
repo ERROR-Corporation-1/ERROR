@@ -1,7 +1,5 @@
 export default async function handler(req, res) {
-
   try {
-
     const userMessage = req.body.message;
 
     if (!userMessage) {
@@ -11,22 +9,22 @@ export default async function handler(req, res) {
     }
 
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+      "https://api-inference.huggingface.co/models/google/gemma-2-9b-it",
       {
         method: "POST",
-
         headers: {
-          "Authorization": `Bearer ${process.env.HF_API_KEY}`,
+          Authorization: `Bearer ${process.env.HF_API_KEY}`,
           "Content-Type": "application/json"
         },
-
         body: JSON.stringify({
-          inputs:
-            "You are ERROR AI, the official assistant of ERROR Corporation. You are futuristic, calm, intelligent, and helpful.\n\n" +
-            "User: " + userMessage + "\n" +
-            "Assistant:"
-        })
+          inputs: `
+You are ERROR AI, the official assistant of ERROR Corporation.
+You are futuristic, calm, intelligent, and helpful.
 
+User: ${userMessage}
+Assistant:
+          `
+        })
       }
     );
 
@@ -34,7 +32,6 @@ export default async function handler(req, res) {
 
     console.log("HF RESPONSE:", data);
 
-    /* HANDLE HUGGING FACE RATE LIMIT / LOADING */
     if (!response.ok) {
       return res.status(response.status).json({
         reply:
@@ -43,11 +40,10 @@ export default async function handler(req, res) {
       });
     }
 
-    /* EXTRACT REPLY */
+    // HF sometimes returns different formats
     const reply =
-      data?.[0]?.generated_text?.split("Assistant:")[1]?.trim() ||
-      data?.generated_text ||
-      data?.[0]?.generated_text;
+      data?.[0]?.generated_text ||
+      data?.generated_text;
 
     if (!reply) {
       return res.status(500).json({
@@ -59,16 +55,11 @@ export default async function handler(req, res) {
       reply
     });
 
-  }
-
-  catch (error) {
-
+  } catch (error) {
     console.error("SERVER ERROR:", error);
 
     return res.status(500).json({
       reply: "Server error occurred while contacting ERROR AI."
     });
-
   }
-
 }
