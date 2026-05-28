@@ -11,36 +11,20 @@ export default async function handler(req, res) {
     }
 
     const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
+      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
       {
         method: "POST",
 
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json",
-          "HTTP-Referer": "https://error-lake.vercel.app",
-          "X-Title": "ERROR Corporation AI"
+          "Authorization": `Bearer ${process.env.HF_API_KEY}`,
+          "Content-Type": "application/json"
         },
 
         body: JSON.stringify({
-
-          model: "openai/gpt-3.5-turbo",
-
-          messages: [
-
-            {
-              role: "system",
-              content:
-                "You are ERROR AI, the official assistant of ERROR Corporation. You are mysterious, futuristic, calm, intelligent, and helpful."
-            },
-
-            {
-              role: "user",
-              content: userMessage
-            }
-
-          ]
-
+          inputs:
+            "You are ERROR AI, the official assistant of ERROR Corporation. You are futuristic, calm, intelligent, and helpful.\n\n" +
+            "User: " + userMessage + "\n" +
+            "Assistant:"
         })
 
       }
@@ -48,31 +32,27 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    console.log("OPENROUTER RESPONSE:", data);
+    console.log("HF RESPONSE:", data);
 
-    /* SHOW REAL API ERRORS */
+    /* HANDLE HUGGING FACE RATE LIMIT / LOADING */
     if (!response.ok) {
-
       return res.status(response.status).json({
-
         reply:
-          data?.error?.message ||
-          "OpenRouter request failed."
-
+          data?.error ||
+          "Hugging Face request failed."
       });
-
     }
 
-    /* SAFELY GET AI MESSAGE */
+    /* EXTRACT REPLY */
     const reply =
-      data?.choices?.[0]?.message?.content;
+      data?.[0]?.generated_text?.split("Assistant:")[1]?.trim() ||
+      data?.generated_text ||
+      data?.[0]?.generated_text;
 
     if (!reply) {
-
       return res.status(500).json({
         reply: "ERROR AI returned an empty response."
       });
-
     }
 
     return res.status(200).json({
@@ -86,10 +66,7 @@ export default async function handler(req, res) {
     console.error("SERVER ERROR:", error);
 
     return res.status(500).json({
-
-      reply:
-        "Server error occurred while contacting ERROR AI."
-
+      reply: "Server error occurred while contacting ERROR AI."
     });
 
   }
