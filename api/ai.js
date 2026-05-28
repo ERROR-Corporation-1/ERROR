@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
         body: JSON.stringify({
 
-          model: "google/gemma-2-9b-it",
+          model: model: "openai/gpt-3.5-turbo"",
 
           messages: [
 
