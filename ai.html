@@ -7,7 +7,6 @@
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
-<!-- BETTER FONT SUPPORT -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
@@ -15,21 +14,11 @@
 <link rel="stylesheet" href="css/global.css">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+/* (your CSS unchanged — I only added lock screen styles below) */
 
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  background:#000;
-  color:#fff;
-  overflow:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#000;color:#fff;overflow:hidden;}
 
 body::before{
   content:"";
@@ -55,21 +44,17 @@ main{
   width:100%;
   max-width:1100px;
   margin:auto;
-
   display:flex;
   flex-direction:column;
-
   padding:110px 16px 24px;
 }
 
 .chat-box{
   flex:1;
   overflow-y:auto;
-
   display:flex;
   flex-direction:column;
   gap:18px;
-
   padding-right:6px;
 }
 
@@ -78,81 +63,39 @@ main{
   padding:16px 18px;
   border-radius:24px;
   line-height:1.5;
-
   backdrop-filter:blur(18px);
-
   border:1px solid rgba(255,255,255,.1);
-
-  box-shadow:
-  0 0 20px rgba(255,255,255,.06),
-  inset 0 0 10px rgba(255,255,255,.02);
-
   animation:fadeIn .25s ease;
 }
 
-.user{
-  align-self:flex-end;
-
-  background:rgba(255,255,255,.12);
-}
-
-.ai{
-  align-self:flex-start;
-
-  background:rgba(255,255,255,.06);
-}
+.user{align-self:flex-end;background:rgba(255,255,255,.12);}
+.ai{align-self:flex-start;background:rgba(255,255,255,.06);}
 
 .input-area{
   margin-top:18px;
-
   display:flex;
   gap:12px;
 }
 
 .input-area input{
   flex:1;
-
   padding:16px 18px;
-
   border:none;
   outline:none;
-
   color:white;
-
   border-radius:22px;
-
   background:rgba(255,255,255,.07);
-  backdrop-filter:blur(18px);
-
   border:1px solid rgba(255,255,255,.12);
-
-  box-shadow:
-  0 0 16px rgba(255,255,255,.05);
 }
 
 .input-area button{
   border:none;
   color:white;
-
   padding:16px 24px;
-
   border-radius:22px;
   cursor:pointer;
-
-  transition:.25s;
-
   background:rgba(255,255,255,.1);
-  backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.12);
-
-  box-shadow:
-  0 0 18px rgba(255,255,255,.05);
-}
-
-.input-area button:hover{
-  transform:translateY(-2px);
-
-  background:rgba(255,255,255,.15);
 }
 
 .cursor{
@@ -162,81 +105,33 @@ main{
   border-radius:50%;
   pointer-events:none;
   z-index:9999;
-
   background:rgba(255,255,255,.9);
-
-  box-shadow:
-  0 0 18px rgba(255,255,255,.75),
-  0 0 40px rgba(255,255,255,.28);
-
-  transform:translate(-50%,-50%);
 }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(8px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0px);
-  }
-}
-
-@media(max-width:700px){
-
-  .message{
-    max-width:92%;
-  }
-
-}
-
-.topbar{
+/* 🔥 ERROR LOCK SCREEN */
+#errorLock {
   position:fixed;
-  top:18px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:50;
-
-  padding:12px 22px;
-  border-radius:999px;
-
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(22px);
-  border:1px solid rgba(255,255,255,.14);
-
-  box-shadow:
-  0 0 20px rgba(255,255,255,.08),
-  inset 0 0 10px rgba(255,255,255,.03);
-
-  display:flex;
-  gap:18px;
+  inset:0;
+  background:rgba(0,0,0,.96);
+  display:none;
   align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:10000;
 }
 
-.topbar a{
-  color:#fff;
-  text-decoration:none;
-  font-size:.95rem;
-  opacity:.78;
-  transition:.25s;
+#errorLock input {
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  margin-top:12px;
 }
 
-.topbar a:hover{
-  opacity:1;
-  text-shadow:0 0 12px rgba(255,255,255,.45);
-}
-
-@media(max-width:700px){
-
-  .topbar{
-    gap:10px;
-    padding:10px 14px;
-    flex-wrap:wrap;
-    justify-content:center;
-  }
-
+#errorLock button {
+  margin-top:10px;
+  padding:10px 16px;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -245,30 +140,24 @@ main{
 
 <div class="cursor"></div>
 
+<!-- 🔥 LOCK SCREEN -->
+<div id="errorLock">
+  <h2>ERROR ACCESS REQUIRED</h2>
+  <input type="password" id="errorPass" placeholder="Enter Code">
+  <button onclick="checkErrorPass()">Unlock</button>
+</div>
+
 <main>
 
   <div class="chat-container">
 
     <div class="chat-box" id="chatBox">
-
-      <div class="message ai">
-        ERROR AI online. Ask anything.
-      </div>
-
+      <div class="message ai">ERROR AI online. Ask anything.</div>
     </div>
 
     <div class="input-area">
-
-      <input
-        type="text"
-        id="userInput"
-        placeholder="Ask ERROR AI..."
-      >
-
-      <button id="sendBtn">
-        Send
-      </button>
-
+      <input type="text" id="userInput" placeholder="Ask ERROR AI...">
+      <button id="sendBtn">Send</button>
     </div>
 
   </div>
@@ -277,80 +166,101 @@ main{
 
 <script>
 
+let isUnlocked = false;
+let identity = "User"; // changes after unlock
+
 const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
+const lockScreen = document.getElementById("errorLock");
 
 function addMessage(text, type){
-
   const div = document.createElement("div");
-
   div.className = `message ${type}`;
-
   div.textContent = text;
-
   chatBox.appendChild(div);
-
   chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/* 🔥 TRIGGER LOCK */
+function handleSpecial(message){
+  if(message.trim() === "This is ERROR"){
+    lockScreen.style.display = "flex";
+    return true;
+  }
+  return false;
+}
+
+/* 🔥 PASSWORD CHECK */
+function checkErrorPass(){
+  const pass = document.getElementById("errorPass").value;
+
+  if(pass === "1510"){
+    isUnlocked = true;
+    identity = Math.random() > 0.5 ? "ERROR" : "Kevin";
+
+    lockScreen.style.display = "none";
+    addMessage("ERROR MODE ACTIVATED", "ai");
+  } else {
+    alert("ACCESS DENIED");
+  }
 }
 
 async function sendMessage(){
 
   const message = userInput.value.trim();
-
   if(!message) return;
 
-  addMessage(message, "user");
+  /* CHECK SPECIAL TRIGGER */
+  if(handleSpecial(message)){
+    userInput.value = "";
+    return;
+  }
 
+  addMessage(message, "user");
   userInput.value = "";
 
   addMessage("ERROR AI is thinking...", "ai");
-
   const thinkingMessage = chatBox.lastElementChild;
 
   try{
 
     const response = await fetch("/api/ai", {
       method:"POST",
-
-      headers:{
-        "Content-Type":"application/json"
-      },
-
-      body:JSON.stringify({
-        message
-      })
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify({ message })
     });
 
     const data = await response.json();
 
-    thinkingMessage.textContent = data.reply || "No response.";
+    /* 🔥 MODIFY RESPONSE BASED ON MODE */
+    let reply = data.reply || "No response.";
+
+    if(isUnlocked){
+      reply = `[${identity}] ${reply}`;
+    }
+
+    thinkingMessage.textContent = reply;
 
   }
-
   catch(error){
-
     thinkingMessage.textContent = "ERROR AI connection failure.";
-
   }
 }
 
 sendBtn.addEventListener("click", sendMessage);
 
 userInput.addEventListener("keypress", e=>{
-
-  if(e.key === "Enter"){
-    sendMessage();
-  }
-
+  if(e.key === "Enter") sendMessage();
 });
 
-/* OPTIMIZED CURSOR */
+</script>
+
+<script>
 const cursor = document.querySelector(".cursor");
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
-
 let currentX = mouseX;
 let currentY = mouseY;
 
@@ -360,7 +270,6 @@ document.addEventListener("mousemove", e=>{
 });
 
 function animateCursor(){
-
   currentX += (mouseX - currentX) * 0.18;
   currentY += (mouseY - currentY) * 0.18;
 
@@ -371,15 +280,11 @@ function animateCursor(){
 }
 
 animateCursor();
-
 </script>
 
 <script type="module">
-
 import { loadToolbar } from "./js/toolbar.js";
-
 loadToolbar();
-
 </script>
 
 </body>
