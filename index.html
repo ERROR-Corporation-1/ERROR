@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ERROR Corporation</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
 <style>
@@ -12,7 +14,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:"Arial Rounded MT Bold", Arial, sans-serif;
+  font-family:"Orbitron", sans-serif;
 }
 
 html{
@@ -251,19 +253,6 @@ footer{
 
 <div class="cursor"></div>
 
-<!-- TOP BAR (FIXED LINKS ONLY) -->
-<div class="topbar">
-
-  <a href="ai.html" target="_blank">Ask ERROR</a>
-
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBXrL3Z6dZDh78McRsDKgDXkot30GT3YqbpFdmCn1U5AMmjQ/viewform?usp=header" target="_blank">
-    Share Ideas
-  </a>
-
-  <a href="help.html" target="_blank">Help</a>
-
-</div>
-
 <main>
 
 <section class="hero" id="home">
@@ -278,7 +267,7 @@ footer{
 
   <div class="btn-row">
 
-    <button onclick="window.open('ai.html','_blank')">
+    <button onclick="window.open('errormc.html','_blank')">
       ERROR MC
     </button>
 
@@ -397,5 +386,12 @@ document.querySelectorAll("button,a,.card").forEach(el=>{
 
 </script>
 
+<script type="module">
+import { loadToolbar } from "./js/toolbar.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadToolbar();
+});
+</script>
 </body>
 </html>
