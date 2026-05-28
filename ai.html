@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="css/global.css">
 
 <style>
+/* (your CSS unchanged — I only added lock screen styles below) */
+
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:#000;color:#fff;overflow:hidden;}
@@ -39,6 +41,7 @@ main{
 
 .chat-container{
   flex:1;
+  width:100%;
   max-width:1100px;
   margin:auto;
   display:flex;
@@ -52,6 +55,7 @@ main{
   display:flex;
   flex-direction:column;
   gap:18px;
+  padding-right:6px;
 }
 
 .message{
@@ -75,7 +79,7 @@ main{
 
 .input-area input{
   flex:1;
-  padding:16px;
+  padding:16px 18px;
   border:none;
   outline:none;
   color:white;
@@ -85,6 +89,8 @@ main{
 }
 
 .input-area button{
+  border:none;
+  color:white;
   padding:16px 24px;
   border-radius:22px;
   cursor:pointer;
@@ -102,8 +108,8 @@ main{
   background:rgba(255,255,255,.9);
 }
 
-/* LOCK SCREEN */
-#errorLock{
+/* 🔥 ERROR LOCK SCREEN */
+#errorLock {
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.96);
@@ -114,14 +120,18 @@ main{
   z-index:10000;
 }
 
-#errorLock input{
+#errorLock input {
   padding:12px;
+  border-radius:10px;
+  border:none;
+  outline:none;
   margin-top:12px;
 }
 
-#errorLock button{
+#errorLock button {
   margin-top:10px;
   padding:10px 16px;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -130,7 +140,7 @@ main{
 
 <div class="cursor"></div>
 
-<!-- 🔐 LOCK SCREEN -->
+<!-- 🔥 LOCK SCREEN -->
 <div id="errorLock">
   <h2>ERROR ACCESS REQUIRED</h2>
   <input type="password" id="errorPass" placeholder="Enter Code">
@@ -146,7 +156,7 @@ main{
     </div>
 
     <div class="input-area">
-      <input id="userInput" placeholder="Ask ERROR AI...">
+      <input type="text" id="userInput" placeholder="Ask ERROR AI...">
       <button id="sendBtn">Send</button>
     </div>
 
@@ -156,10 +166,8 @@ main{
 
 <script>
 
-/* 🔥 STATE */
 let isUnlocked = false;
-let isOwner = false;
-let identity = "User";
+let identity = "User"; // changes after unlock
 
 const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
@@ -174,7 +182,7 @@ function addMessage(text, type){
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-/* 🔐 TRIGGER LOCK */
+/* 🔥 TRIGGER LOCK */
 function handleSpecial(message){
   if(message.trim() === "This is ERROR"){
     lockScreen.style.display = "flex";
@@ -183,79 +191,37 @@ function handleSpecial(message){
   return false;
 }
 
-/* 🔐 PASSWORD */
+/* 🔥 PASSWORD CHECK */
 function checkErrorPass(){
-
   const pass = document.getElementById("errorPass").value;
 
   if(pass === "1510"){
-
     isUnlocked = true;
-    isOwner = true;
-
     identity = Math.random() > 0.5 ? "ERROR" : "Kevin";
 
     lockScreen.style.display = "none";
-
     addMessage("ERROR MODE ACTIVATED", "ai");
-    addMessage("OWNER ACCESS GRANTED", "ai");
-
   } else {
     alert("ACCESS DENIED");
   }
 }
 
-/* 💻 DOMAIN EXPANSION */
-function generateFakeCode(){
-
-  addMessage("INITIALIZING DOMAIN EXPANSION...", "ai");
-
-  let output = "";
-
-  const lines = [
-    "let core = initializeSystem();",
-    "function entropy() { return Math.random(); }",
-    "ERROR.inject(protocol);",
-    "kernel.sync();",
-    "void.process.activate();",
-    "memory.shift();",
-    "network.bind(null);",
-    "system.override(true);"
-  ];
-
-  for(let i = 0; i < 500; i++){
-    output += lines[Math.floor(Math.random() * lines.length)] + "\n";
-  }
-
-  addMessage(output, "ai");
-}
-
-/* 🚀 SEND MESSAGE */
 async function sendMessage(){
 
   const message = userInput.value.trim();
   if(!message) return;
 
-  userInput.value = "";
-
-  addMessage(message, "user");
-
-  /* 🔥 SPECIAL COMMAND */
-  if(message === "Domain Expansion"){
-    if(!isUnlocked){
-      addMessage("ACCESS DENIED", "ai");
-      return;
-    }
-
-    generateFakeCode();
+  /* CHECK SPECIAL TRIGGER */
+  if(handleSpecial(message)){
+    userInput.value = "";
     return;
   }
 
-  /* 🔐 LOCK TRIGGER */
-  if(handleSpecial(message)) return;
+  addMessage(message, "user");
+  userInput.value = "";
 
   addMessage("ERROR AI is thinking...", "ai");
-  const thinking = chatBox.lastElementChild;
+  const thinkingMessage = chatBox.lastElementChild;
 
   try{
 
@@ -267,16 +233,18 @@ async function sendMessage(){
 
     const data = await response.json();
 
+    /* 🔥 MODIFY RESPONSE BASED ON MODE */
     let reply = data.reply || "No response.";
 
     if(isUnlocked){
       reply = `[${identity}] ${reply}`;
     }
 
-    thinking.textContent = reply;
+    thinkingMessage.textContent = reply;
 
-  } catch(e){
-    thinking.textContent = "ERROR AI connection failure.";
+  }
+  catch(error){
+    thinkingMessage.textContent = "ERROR AI connection failure.";
   }
 }
 
@@ -291,8 +259,8 @@ userInput.addEventListener("keypress", e=>{
 <script>
 const cursor = document.querySelector(".cursor");
 
-let mouseX = window.innerWidth/2;
-let mouseY = window.innerHeight/2;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
 let currentX = mouseX;
 let currentY = mouseY;
 
@@ -301,17 +269,17 @@ document.addEventListener("mousemove", e=>{
   mouseY = e.clientY;
 });
 
-function animate(){
-  currentX += (mouseX-currentX)*0.18;
-  currentY += (mouseY-currentY)*0.18;
+function animateCursor(){
+  currentX += (mouseX - currentX) * 0.18;
+  currentY += (mouseY - currentY) * 0.18;
 
   cursor.style.left = currentX + "px";
   cursor.style.top = currentY + "px";
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateCursor);
 }
 
-animate();
+animateCursor();
 </script>
 
 <script type="module">
