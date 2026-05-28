@@ -7,121 +7,146 @@
 
 <link rel="icon" type="image/png" href="assets/ERROR Logo 2.png">
 
+<!-- FONT PRELOAD FIX -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/global.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:#000;color:#fff;overflow:hidden;}
+/* =========================
+   GLOBAL STABILITY FIX
+========================= */
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
+html, body {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+
+  /* FIX FLASH / MOBILE LOOK ISSUE */
+  opacity: 0;
+  animation: fadeInBody 0.25s forwards;
+
+  font-family: "Orbitron", sans-serif;
+}
+
+@keyframes fadeInBody {
+  to { opacity: 1; }
+}
+
+/* BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
   background:
-  radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
-  linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
-  z-index:0;
+    radial-gradient(circle at top, rgba(255,255,255,.06), transparent 50%),
+    linear-gradient(to bottom, rgba(255,255,255,.03), rgba(0,0,0,.96));
+  z-index: 0;
 }
 
-main{
-  position:relative;
-  z-index:2;
-  width:100%;
-  height:100vh;
-  display:flex;
-  flex-direction:column;
+/* MAIN LAYOUT */
+main {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.chat-container{
-  flex:1;
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  padding:110px 16px 24px;
+.chat-container {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 110px 16px 24px;
 }
 
-.chat-box{
-  flex:1;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-right: 6px;
 }
 
-.message{
-  max-width:78%;
-  padding:16px 18px;
-  border-radius:24px;
-  line-height:1.5;
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,.1);
-  animation:fadeIn .25s ease;
+/* MESSAGES */
+.message {
+  max-width: 78%;
+  padding: 16px 18px;
+  border-radius: 24px;
+  line-height: 1.5;
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,.1);
+  animation: fadeIn .25s ease;
 }
 
-.user{align-self:flex-end;background:rgba(255,255,255,.12);}
-.ai{align-self:flex-start;background:rgba(255,255,255,.06);}
+.user { align-self: flex-end; background: rgba(255,255,255,.12); }
+.ai { align-self: flex-start; background: rgba(255,255,255,.06); }
 
-.input-area{
-  margin-top:18px;
-  display:flex;
-  gap:12px;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.input-area input{
-  flex:1;
-  padding:16px;
-  border:none;
-  outline:none;
-  color:white;
-  border-radius:22px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.12);
+/* INPUT */
+.input-area {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
 }
 
-.input-area button{
-  padding:16px 24px;
-  border-radius:22px;
-  cursor:pointer;
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.12);
+.input-area input {
+  flex: 1;
+  padding: 16px 18px;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 22px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
 }
 
-.cursor{
-  position:fixed;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:9999;
-  background:rgba(255,255,255,.9);
+.input-area button {
+  padding: 16px 24px;
+  border-radius: 22px;
+  cursor: pointer;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.12);
+  color: white;
 }
 
-/* LOCK SCREEN */
-#errorLock{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.96);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  z-index:10000;
+/* CURSOR */
+.cursor {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 0 18px rgba(255,255,255,.75);
+  transform: translate(-50%, -50%);
 }
 
-#errorLock input{
-  padding:12px;
-  margin-top:12px;
-}
-
-#errorLock button{
-  margin-top:10px;
-  padding:10px 16px;
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .message {
+    max-width: 92%;
+  }
 }
 </style>
 </head>
@@ -129,13 +154,6 @@ main{
 <body>
 
 <div class="cursor"></div>
-
-<!-- 🔐 LOCK SCREEN -->
-<div id="errorLock">
-  <h2>ERROR ACCESS REQUIRED</h2>
-  <input type="password" id="errorPass" placeholder="Enter Code">
-  <button onclick="checkErrorPass()">Unlock</button>
-</div>
 
 <main>
 
@@ -155,18 +173,15 @@ main{
 </main>
 
 <script>
-
-/* 🔥 STATE */
-let isUnlocked = false;
-let isOwner = false;
-let identity = "User";
+/* =========================
+   CHAT LOGIC
+========================= */
 
 const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
-const lockScreen = document.getElementById("errorLock");
 
-function addMessage(text, type){
+function addMessage(text, type) {
   const div = document.createElement("div");
   div.className = `message ${type}`;
   div.textContent = text;
@@ -174,136 +189,58 @@ function addMessage(text, type){
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-/* 🔐 TRIGGER LOCK */
-function handleSpecial(message){
-  if(message.trim() === "This is ERROR"){
-    lockScreen.style.display = "flex";
-    return true;
-  }
-  return false;
-}
-
-/* 🔐 PASSWORD */
-function checkErrorPass(){
-
-  const pass = document.getElementById("errorPass").value;
-
-  if(pass === "1510"){
-
-    isUnlocked = true;
-    isOwner = true;
-
-    identity = Math.random() > 0.5 ? "ERROR" : "Kevin";
-
-    lockScreen.style.display = "none";
-
-    addMessage("ERROR MODE ACTIVATED", "ai");
-    addMessage("OWNER ACCESS GRANTED", "ai");
-
-  } else {
-    alert("ACCESS DENIED");
-  }
-}
-
-/* 💻 DOMAIN EXPANSION */
-function generateFakeCode(){
-
-  addMessage("INITIALIZING DOMAIN EXPANSION...", "ai");
-
-  let output = "";
-
-  const lines = [
-    "let core = initializeSystem();",
-    "function entropy() { return Math.random(); }",
-    "ERROR.inject(protocol);",
-    "kernel.sync();",
-    "void.process.activate();",
-    "memory.shift();",
-    "network.bind(null);",
-    "system.override(true);"
-  ];
-
-  for(let i = 0; i < 500; i++){
-    output += lines[Math.floor(Math.random() * lines.length)] + "\n";
-  }
-
-  addMessage(output, "ai");
-}
-
-/* 🚀 SEND MESSAGE */
-async function sendMessage(){
-
+async function sendMessage() {
   const message = userInput.value.trim();
-  if(!message) return;
-
-  userInput.value = "";
+  if (!message) return;
 
   addMessage(message, "user");
-
-  /* 🔥 SPECIAL COMMAND */
-  if(message === "Domain Expansion"){
-    if(!isUnlocked){
-      addMessage("ACCESS DENIED", "ai");
-      return;
-    }
-
-    generateFakeCode();
-    return;
-  }
-
-  /* 🔐 LOCK TRIGGER */
-  if(handleSpecial(message)) return;
+  userInput.value = "";
 
   addMessage("ERROR AI is thinking...", "ai");
   const thinking = chatBox.lastElementChild;
 
-  try{
-
+  try {
     const response = await fetch("/api/ai", {
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body:JSON.stringify({ message })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
     });
 
     const data = await response.json();
+    thinking.textContent = data.reply || "No response.";
 
-    let reply = data.reply || "No response.";
-
-    if(isUnlocked){
-      reply = `[${identity}] ${reply}`;
-    }
-
-    thinking.textContent = reply;
-
-  } catch(e){
+  } catch (err) {
     thinking.textContent = "ERROR AI connection failure.";
   }
 }
 
 sendBtn.addEventListener("click", sendMessage);
 
-userInput.addEventListener("keypress", e=>{
-  if(e.key === "Enter") sendMessage();
+userInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendMessage();
 });
-
 </script>
 
 <script>
+/* =========================
+   CURSOR FIXED ANIMATION
+========================= */
+
 const cursor = document.querySelector(".cursor");
 
-let mouseX = window.innerWidth/2;
-let mouseY = window.innerHeight/2;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
 let currentX = mouseX;
 let currentY = mouseY;
 
-document.addEventListener("mousemove", e=>{
+document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
 
-function animate(){
-  currentX += (mouseX-currentX)*0.18;
-  currentY += (mouseY-currentY)*0.18;
+function animate() {
+  currentX += (mouseX - currentX) * 0.18;
+  currentY += (mouseY - currentY) * 0.18;
 
   cursor.style.left = currentX + "px";
   cursor.style.top = currentY + "px";
@@ -317,6 +254,16 @@ animate();
 <script type="module">
 import { loadToolbar } from "./js/toolbar.js";
 loadToolbar();
+</script>
+
+<script>
+/* =========================
+   FINAL LOAD FIX (CRITICAL)
+========================= */
+
+window.addEventListener("load", () => {
+  document.body.style.opacity = "1";
+});
 </script>
 
 </body>
