@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    const userMessage = req.body?.message;
+    const userMessage = req.body.message;
 
     if (!userMessage) {
       return res.status(400).json({
@@ -18,9 +18,10 @@ export default async function handler(req, res) {
           "HTTP-Referer": "https://error-lake.vercel.app",
           "X-Title": "ERROR Corporation AI"
         },
+
         body: JSON.stringify({
-          // ✅ SAFE FREE MODEL (known to exist on OpenRouter)
-          model: "openai/gpt-3.5-turbo",
+          // SAFE WORKING FREE MODEL (fallback-safe)
+          model: "meta-llama/llama-3.1-8b-instruct",
 
           messages: [
             {
@@ -32,23 +33,25 @@ export default async function handler(req, res) {
               role: "user",
               content: userMessage
             }
-          ]
+          ],
+
+          temperature: 0.7,
+          max_tokens: 500
         })
       }
     );
 
     const data = await response.json();
 
-    // 🔥 IMPORTANT DEBUG (this will show REAL errors)
-    console.log("OPENROUTER STATUS:", response.status);
-    console.log("OPENROUTER DATA:", data);
+    console.log("OPENROUTER RESPONSE:", data);
 
+    // HARD ERROR CHECK (IMPORTANT)
     if (!response.ok) {
       return res.status(response.status).json({
         reply:
           data?.error?.message ||
-          data?.message ||
-          "OpenRouter request failed (unknown error)."
+          data?.error ||
+          "OpenRouter request failed."
       });
     }
 
@@ -61,6 +64,7 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({ reply });
+
   } catch (error) {
     console.error("SERVER ERROR:", error);
 
