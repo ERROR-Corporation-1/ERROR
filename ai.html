@@ -162,6 +162,32 @@ main{
   cursor:none;
 }
 
+/* VERSION NUMBER */
+.version-info{
+  position:fixed;
+  bottom:12px;
+  left:12px;
+
+  color:#808080;
+  font-size:12px;
+  font-family:'Orbitron',sans-serif;
+
+  z-index:5;
+  pointer-events:none;
+}
+
+/* TIP LINE */
+.error-tip{
+  margin-top:8px;
+
+  color:#808080;
+  font-size:12px;
+  font-family:'Orbitron',sans-serif;
+
+  text-align:center;
+  user-select:none;
+}
+
 /* ANIMATION */
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(8px);}
@@ -194,9 +220,17 @@ main{
       <button id="sendBtn">Send</button>
     </div>
 
+    <div class="error-tip">
+  Tip: Hidden features may exist. Try exploring ERROR AI.
+</div>
+
   </div>
 
 </main>
+
+<div class="version-info">
+  ERROR AI v0.1.0 Alpha
+</div>
 
 <script>
 
