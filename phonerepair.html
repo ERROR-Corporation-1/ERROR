@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Repair Dashboard</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0f;
+  color: #fff;
+}
+
+/* HEADER */
+header {
+  padding: 20px;
+  text-align: center;
+  background: #111;
+  border-bottom: 1px solid #222;
+}
+
+/* LAYOUT */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+/* PANEL */
+.panel {
+  background: #15151c;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+
+/* FORM */
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+button {
+  background: #4f7cff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #3a63d6;
+}
+
+/* LIST */
+.job {
+  background: #1c1c26;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border-left: 4px solid #4f7cff;
+}
+
+.small {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.pending { color: orange; }
+.progress { color: cyan; }
+.done { color: lightgreen; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>📱 iPhone Repair Dashboard</h1>
+  <p class="small">Internal use only — track devices, repair times, and status</p>
+</header>
+
+<div class="container">
+
+  <!-- ADD JOB -->
+  <div class="panel">
+    <h2>➕ New Repair Job</h2>
+
+    <input id="model" placeholder="iPhone model (e.g. iPhone 13 Pro)">
+    <input id="issue" placeholder="Issue (e.g. cracked screen)">
+    <input id="time" placeholder="Estimated repair time (e.g. 2 hours)">
+
+    <select id="status">
+      <option value="pending">Pending</option>
+      <option value="progress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+
+    <button onclick="addJob()">Add Job</button>
+  </div>
+
+  <!-- JOB LIST -->
+  <div class="panel">
+    <h2>🧾 Repair Queue</h2>
+    <div id="list"></div>
+  </div>
+
+</div>
+
+<script>
+let jobs = JSON.parse(localStorage.getItem("jobs") || "[]");
+
+function save(){
+  localStorage.setItem("jobs", JSON.stringify(jobs));
+}
+
+function addJob(){
+  const model = document.getElementById("model").value;
+  const issue = document.getElementById("issue").value;
+  const time = document.getElementById("time").value;
+  const status = document.getElementById("status").value;
+
+  if(!model || !issue) return;
+
+  jobs.push({
+    model,
+    issue,
+    time,
+    status,
+    id: Date.now()
+  });
+
+  save();
+  render();
+}
+
+function render(){
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  jobs.forEach(job => {
+
+    let statusClass = job.status === "pending" ? "pending"
+                    : job.status === "progress" ? "progress"
+                    : "done";
+
+    list.innerHTML += `
+      <div class="job">
+        <div><b>${job.model}</b></div>
+        <div>${job.issue}</div>
+        <div class="small">ETA: ${job.time || "N/A"}</div>
+        <div class="status ${statusClass}">${job.status.toUpperCase()}</div>
+      </div>
+    `;
+  });
+}
+
+render();
+</script>
+
+</body>
+</html>
