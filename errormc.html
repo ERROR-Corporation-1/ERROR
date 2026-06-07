@@ -220,12 +220,12 @@ footer{
 
 /* COPY IP */
 function copyIP(){
-  navigator.clipboard.writeText("us.freegamehost.xyz:5063");
+  navigator.clipboard.writeText("us.freegamehost.xyz:11313");
   alert("IP Copied");
 }
 
 /* STATUS CHECK */
-fetch("https://api.mcsrvstat.us/bedrock/2/us.freegamehost.xyz:5063")
+fetch("https://api.mcsrvstat.us/bedrock/2/us.freegamehost.xyz:11313")
 .then(r=>r.json())
 .then(d=>{
   document.getElementById("status").innerText =
