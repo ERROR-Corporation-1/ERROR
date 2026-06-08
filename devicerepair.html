@@ -240,8 +240,29 @@ footer{
 </section>
 
 <section class="section">
-<div class="section-title">Today's Repairs</div>
+
+<div class="section-title">
+Today's Repairs
+</div>
+
+<div style="text-align:center;margin-bottom:20px;">
+
+<select id="sortOrder" onchange="render()">
+
+<option value="newest">
+Newest → Oldest
+</option>
+
+<option value="oldest">
+Oldest → Newest
+</option>
+
+</select>
+
+</div>
+
 <div class="grid" id="repairGrid"></div>
+
 </section>
 
 <section class="section">
@@ -250,11 +271,35 @@ footer{
 <div class="grid">
 
 <div class="card">
+
 <h3>New Repair Ticket</h3>
-<p>Create a new repair entry for ANY device type.</p>
+
+<p>
+Create a new repair entry for ANY device type.
+</p>
+
 <div class="btn-row">
-<button onclick="openModal()">Create Ticket</button>
+<button onclick="openModal()">
+Create Ticket
+</button>
 </div>
+
+</div>
+
+<div class="card">
+
+<h3>Repair Management</h3>
+
+<p>
+Remove all repair tickets from the system.
+</p>
+
+<div class="btn-row">
+<button onclick="clearRepairs()">
+Clear All Repairs
+</button>
+</div>
+
 </div>
 
 </div>
@@ -299,27 +344,81 @@ function save(){
     localStorage.setItem("repairs", JSON.stringify(repairs));
 }
 
+function deleteRepair(id){
+    if(!confirm("Delete this repair ticket?")){
+        return;
+    }
+
+    repairs = repairs.filter(r => r.id !== id);
+
+    save();
+    render();
+}
+
+function clearRepairs(){
+
+    if(!confirm("Delete ALL repair tickets?")){
+        return;
+    }
+
+    repairs = [];
+
+    save();
+    render();
+}
+
 function render(){
+
     grid.innerHTML = "";
-    repairs.forEach(r=>{
+
+    let displayRepairs = [...repairs];
+
+    const sortOrder =
+    document.getElementById("sortOrder")?.value;
+
+    if(sortOrder === "oldest"){
+        displayRepairs.reverse();
+    }
+
+    displayRepairs.forEach((r)=>{
+
         grid.innerHTML += `
+
         <div class="card">
+
             <h3>${r.device}</h3>
+
             <p>
             Owner: ${r.owner}<br><br>
             Issue: ${r.issue}<br>
             Appointment: ${r.time}
             </p>
+
             <div class="status ${r.status}">
-            ${r.status}
+            ${r.status === "waiting"
+             ? "Waiting"
+             : r.status === "progress"
+             ? "In Progress"
+             : "Completed"}
             </div>
+
+            <div class="btn-row">
+
+                <button onclick="deleteRepair(${r.id})">
+                Delete
+                </button>
+
+            </div>
+
         </div>
+
         `;
     });
 }
 
 function addRepair(){
-    repairs.push({
+    repairs.unshift({
+    id: Date.now(),
         device: document.getElementById("device").value,
         owner: document.getElementById("owner").value,
         issue: document.getElementById("issue").value,
