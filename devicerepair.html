@@ -148,6 +148,49 @@ button:hover{background:rgba(255,255,255,.14);}
   pointer-events:none;
 }
 
+footer{
+  margin-top:70px;
+  text-align:center;
+  opacity:.45;
+  font-size:.82rem;
+}
+
+.topbar{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:50;
+
+  padding:12px 22px;
+  border-radius:999px;
+
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.14);
+
+  box-shadow:
+  0 0 20px rgba(255,255,255,.08),
+  inset 0 0 10px rgba(255,255,255,.03);
+
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.topbar a{
+  color:#fff;
+  text-decoration:none;
+  font-size:.95rem;
+  opacity:.78;
+  transition:.25s;
+}
+
+.topbar a:hover{
+  opacity:1;
+  text-shadow:0 0 12px rgba(255,255,255,.45);
+}
+
 /* MODAL */
 .modal{
     position:fixed;
@@ -217,7 +260,7 @@ button:hover{background:rgba(255,255,255,.14);}
 </div>
 </section>
 
-<footer style="text-align:center;opacity:.5;margin-top:60px;">
+<footer>
 © 2026 ERROR Corporation
 </footer>
 
@@ -323,6 +366,14 @@ function animateCursor(){
     requestAnimationFrame(animateCursor);
 }
 animateCursor();
+</script>
+
+<script type="module">
+import { loadToolbar } from "./js/toolbar.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadToolbar();
+});
 </script>
 
 </body>
