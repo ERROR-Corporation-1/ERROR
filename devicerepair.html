@@ -344,12 +344,12 @@ function save(){
 }
 
 function deleteRepair(id){
-    if(!confirm("Delete this repair ticket?")) return;
 
     repairs = repairs.filter(r => r.id !== id);
 
     save();
     render();
+}
 }
 
 function clearRepairs(){
