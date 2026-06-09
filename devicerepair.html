@@ -367,68 +367,89 @@ function clearRepairs(){
     render();
 }
 
-function render(){
+function render() {
 
     grid.innerHTML = "";
 
     let displayRepairs = [...repairs];
 
-    const sortOrder =
-    document.getElementById("sortOrder")?.value;
+    const sortOrder = document.getElementById("sortOrder")?.value;
 
-    if(sortOrder === "oldest"){
-        displayRepairs.reverse();
+    // Sort by time (id = timestamp)
+    if (sortOrder === "oldest") {
+        displayRepairs.sort((a, b) => a.id - b.id);
+    } else {
+        displayRepairs.sort((a, b) => b.id - a.id);
     }
 
-    displayRepairs.forEach((r)=>{
+    const statusMap = {
+        waiting: "Waiting",
+        progress: "In Progress",
+        complete: "Completed"
+    };
 
-        grid.innerHTML += `
+    let html = "";
 
+    displayRepairs.forEach((r) => {
+        html += `
         <div class="card">
 
             <h3>${r.device}</h3>
 
             <p>
-            Owner: ${r.owner}<br><br>
-            Issue: ${r.issue}<br>
-            Appointment: ${r.time}
+                Owner: ${r.owner}<br><br>
+                Issue: ${r.issue}<br>
+                Appointment: ${r.time}
             </p>
 
             <div class="status ${r.status}">
-            ${r.status === "waiting"
-             ? "Waiting"
-             : r.status === "progress"
-             ? "In Progress"
-             : "Completed"}
+                ${statusMap[r.status]}
             </div>
 
             <div class="btn-row">
-
                 <button onclick="deleteRepair(${r.id})">
-                Delete
+                    Delete
                 </button>
-
             </div>
 
         </div>
-
         `;
     });
+
+    grid.innerHTML = html;
 }
 
 function addRepair(){
+
+    const device = document.getElementById("device").value;
+    const owner = document.getElementById("owner").value;
+    const issue = document.getElementById("issue").value;
+    const time = document.getElementById("time").value;
+    const status = document.getElementById("status").value;
+
+    if (!device || !owner || !issue || !time) {
+        alert("Please fill all fields");
+        return;
+    }
+
     repairs.unshift({
-    id: Date.now(),
-        device: document.getElementById("device").value,
-        owner: document.getElementById("owner").value,
-        issue: document.getElementById("issue").value,
-        time: document.getElementById("time").value,
-        status: document.getElementById("status").value
+        id: crypto.randomUUID(),
+        device,
+        owner,
+        issue,
+        time,
+        status
     });
 
     save();
-    render();
     closeModal();
+    render();
+
+    document.getElementById("device").value = "";
+    document.getElementById("owner").value = "";
+    document.getElementById("issue").value = "";
+    document.getElementById("time").value = "";
+    document.getElementById("status").value = "waiting";
 }
 
 function openModal(){
