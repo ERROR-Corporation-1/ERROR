@@ -335,7 +335,6 @@ ERROR Device Repair Center v0.2.6
 <button onclick="closeModal()">Close</button>
 </div>
 </div>
-
 <script>
 const grid = document.getElementById("repairGrid");
 let repairs = JSON.parse(localStorage.getItem("repairs") || "[]");
@@ -345,9 +344,7 @@ function save(){
 }
 
 function deleteRepair(id){
-    if(!confirm("Delete this repair ticket?")){
-        return;
-    }
+    if(!confirm("Delete this repair ticket?")) return;
 
     repairs = repairs.filter(r => r.id !== id);
 
@@ -356,10 +353,7 @@ function deleteRepair(id){
 }
 
 function clearRepairs(){
-
-    if(!confirm("Delete ALL repair tickets?")){
-        return;
-    }
+    if(!confirm("Delete ALL repair tickets?")) return;
 
     repairs = [];
 
@@ -367,19 +361,19 @@ function clearRepairs(){
     render();
 }
 
-function render() {
+function render(){
 
     grid.innerHTML = "";
 
     let displayRepairs = [...repairs];
 
-    const sortOrder = document.getElementById("sortOrder")?.value;
+    const sortOrder = document.getElementById("sortOrder")?.value || "newest";
 
-    // Sort by time (id = timestamp)
+    // Sort by ID (timestamp-based order)
     if (sortOrder === "oldest") {
-        displayRepairs.sort((a, b) => a.id - b.id);
+        displayRepairs.sort((a, b) => a.id.localeCompare(b.id));
     } else {
-        displayRepairs.sort((a, b) => b.id - a.id);
+        displayRepairs.sort((a, b) => b.id.localeCompare(a.id));
     }
 
     const statusMap = {
@@ -453,11 +447,11 @@ function addRepair(){
 }
 
 function openModal(){
-    document.getElementById("modal").style.display="flex";
+    document.getElementById("modal").style.display = "flex";
 }
 
 function closeModal(){
-    document.getElementById("modal").style.display="none";
+    document.getElementById("modal").style.display = "none";
 }
 
 render();
@@ -495,6 +489,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadToolbar();
 });
 </script>
-
 </body>
 </html>
