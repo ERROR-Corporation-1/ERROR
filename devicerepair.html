@@ -350,7 +350,6 @@ function deleteRepair(id){
     save();
     render();
 }
-}
 
 function clearRepairs(){
     if(!confirm("Delete ALL repair tickets?")) return;
@@ -371,9 +370,9 @@ function render(){
 
     // Sort by ID (timestamp-based order)
     if (sortOrder === "oldest") {
-        displayRepairs.sort((a, b) => a.id.localeCompare(b.id));
+        displayRepairs.sort((a, b) => a.id - b.id);
     } else {
-        displayRepairs.sort((a, b) => b.id.localeCompare(a.id));
+        displayRepairs.sort((a, b) => b.id - a.id);
     }
 
     const statusMap = {
@@ -427,7 +426,7 @@ function addRepair(){
     }
 
     repairs.unshift({
-        id: crypto.randomUUID(),
+        id: Date.now(),
         device,
         owner,
         issue,
