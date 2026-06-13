@@ -229,7 +229,7 @@ main{
 </main>
 
 <div class="version-info">
-ERROR AI v0.2.4
+ERROR AI v0.2.6
 </div>
 
 <script>
@@ -299,6 +299,21 @@ async function sendMessage(){
     return;
   }
 
+  /* 🔥 NATURE CLIENT COMMAND */
+  if(message.trim() === "utility mod link nature"){
+
+    addMessage(message, "user");
+
+    addMessage(
+      "Nature Client Utility Mod: https://natureclient.com/",
+      "ai"
+    );
+
+    userInput.value = "";
+    return;
+  }
+
+  /* NORMAL FLOW */
   addMessage(message, "user");
   userInput.value = "";
 
@@ -315,7 +330,6 @@ async function sendMessage(){
 
     const data = await response.json();
 
-    /* 🔥 MODIFY RESPONSE BASED ON MODE */
     let reply = data.reply || "No response.";
 
     if(isUnlocked){
@@ -324,13 +338,7 @@ async function sendMessage(){
 
     thinkingMessage.textContent = reply;
 
-    localStorage.setItem(
-      "errorChat",
-      chatBox.innerHTML
-    );
-
-  }
-  catch(error){
+  } catch(error){
     thinkingMessage.textContent = "ERROR AI connection failure.";
   }
 }
