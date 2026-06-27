@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
         body: JSON.stringify({
           // SAFE WORKING FREE MODEL (fallback-safe)
-          model: "meta-llama/llama-3.1-8b-instruct",
+          model: "mistralai/mistral-7b-instruct:free",
 
           messages: [
             {
