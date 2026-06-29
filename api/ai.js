@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
         body: JSON.stringify({
           // SAFE WORKING FREE MODEL (fallback-safe)
-          model: "google/gemma-3-12b-it:free",
+          model: "google/gemma-3-12b-it",
 
           messages: [
             {
